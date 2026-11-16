@@ -1,0 +1,3440 @@
+{
+  "title": "Object-level false-alarm root-cause diagnosis",
+  "tolerance_km": 30.0,
+  "note": "Read-only. No model, threshold or coordinate is changed by this script.",
+  "annotation_probe": {
+    "val": {
+      "objects": 35814,
+      "objects_with_both_bboxes": 0,
+      "object_keys": [
+        "bbox_xywh",
+        "bbox_xyxy",
+        "category",
+        "category_id",
+        "ci_label",
+        "contour_lonlat",
+        "contour_xy",
+        "declared_contour_points",
+        "event_id",
+        "object_uid",
+        "source_attributes",
+        "source_cell_id",
+        "source_class_flag",
+        "state_label",
+        "state_valid"
+      ],
+      "centre_offset_km_mean": null,
+      "centre_offset_km_p99": null,
+      "centre_offset_km_max": null
+    },
+    "test": {
+      "objects": 74514,
+      "objects_with_both_bboxes": 0,
+      "object_keys": [
+        "bbox_xywh",
+        "bbox_xyxy",
+        "category",
+        "category_id",
+        "ci_label",
+        "contour_lonlat",
+        "contour_xy",
+        "declared_contour_points",
+        "event_id",
+        "object_uid",
+        "source_attributes",
+        "source_cell_id",
+        "source_class_flag",
+        "state_label",
+        "state_valid"
+      ],
+      "centre_offset_km_mean": null,
+      "centre_offset_km_p99": null,
+      "centre_offset_km_max": null
+    }
+  },
+  "splits": {
+    "dev": {
+      "n_timestamps": 100,
+      "emission_budget": {
+        "total_gt_objects": 1871,
+        "raw_candidates": 13410,
+        "post_gating_candidates": 12766,
+        "gt_per_ts_mean": 18.71,
+        "candidates_per_ts_mean": 127.66,
+        "candidates_per_ts_median": 123.5,
+        "candidates_per_ts_p90": 215.20000000000002,
+        "candidates_per_ts_max": 392,
+        "emission_ratio": 6.823089257081774,
+        "structural_FAR_floor_perfect_discrimination": 0.8534388218705937,
+        "actual_FAR": 0.955976813410622,
+        "actual_POD": 0.3003741314804917,
+        "actual_CSI": 0.03992895204262877,
+        "preds_needed_for_FAR_50_at_current_hits": 1124,
+        "preds_needed_for_FAR_70_at_current_hits": 1874,
+        "zero_gt_timestamps": 0,
+        "candidates_on_zero_gt_timestamps": 0
+      },
+      "tolerance_sensitivity": {
+        "15km": {
+          "preds": 12766,
+          "gt": 1871,
+          "hits": 242,
+          "misses": 1629,
+          "false_alarms": 12524,
+          "POD": 0.1293425975414217,
+          "FAR": 0.9810433965220116,
+          "CSI": 0.016811392844737757,
+          "precision": 0.018956603477988408
+        },
+        "30km": {
+          "preds": 12766,
+          "gt": 1871,
+          "hits": 562,
+          "misses": 1309,
+          "false_alarms": 12204,
+          "POD": 0.3003741314804917,
+          "FAR": 0.955976813410622,
+          "CSI": 0.03992895204262877,
+          "precision": 0.04402318658937804
+        },
+        "45km": {
+          "preds": 12766,
+          "gt": 1871,
+          "hits": 820,
+          "misses": 1051,
+          "false_alarms": 11946,
+          "POD": 0.43826830571886694,
+          "FAR": 0.935766880777064,
+          "CSI": 0.05934718100890208,
+          "precision": 0.06423311922293592
+        },
+        "60km": {
+          "preds": 12766,
+          "gt": 1871,
+          "hits": 1012,
+          "misses": 859,
+          "false_alarms": 11754,
+          "POD": 0.5408872260823089,
+          "FAR": 0.9207269309102303,
+          "CSI": 0.07427522935779816,
+          "precision": 0.07927306908976971
+        },
+        "90km": {
+          "preds": 12766,
+          "gt": 1871,
+          "hits": 1253,
+          "misses": 618,
+          "false_alarms": 11513,
+          "POD": 0.669695350080171,
+          "FAR": 0.901848660504465,
+          "CSI": 0.09361924686192469,
+          "precision": 0.09815133949553502
+        },
+        "120km": {
+          "preds": 12766,
+          "gt": 1871,
+          "hits": 1364,
+          "misses": 507,
+          "false_alarms": 11402,
+          "POD": 0.729021913415286,
+          "FAR": 0.8931536894877017,
+          "CSI": 0.10276501167784223,
+          "precision": 0.10684631051229829
+        }
+      },
+      "topN_budget_by_ranking_key": {
+        "score": {
+          "top5": {
+            "preds": 500,
+            "gt": 1871,
+            "hits": 41,
+            "misses": 1830,
+            "false_alarms": 459,
+            "POD": 0.021913415285943347,
+            "FAR": 0.918,
+            "CSI": 0.01759656652360515,
+            "precision": 0.082
+          },
+          "top10": {
+            "preds": 1000,
+            "gt": 1871,
+            "hits": 81,
+            "misses": 1790,
+            "false_alarms": 919,
+            "POD": 0.0432923570283271,
+            "FAR": 0.919,
+            "CSI": 0.02903225806451613,
+            "precision": 0.081
+          },
+          "top20": {
+            "preds": 2000,
+            "gt": 1871,
+            "hits": 150,
+            "misses": 1721,
+            "false_alarms": 1850,
+            "POD": 0.08017103153393906,
+            "FAR": 0.925,
+            "CSI": 0.040311744154797095,
+            "precision": 0.075
+          },
+          "top34": {
+            "preds": 3389,
+            "gt": 1871,
+            "hits": 236,
+            "misses": 1635,
+            "false_alarms": 3153,
+            "POD": 0.12613575628006413,
+            "FAR": 0.9303629389200354,
+            "CSI": 0.046974522292993634,
+            "precision": 0.06963706107996459
+          },
+          "top50": {
+            "preds": 4876,
+            "gt": 1871,
+            "hits": 313,
+            "misses": 1558,
+            "false_alarms": 4563,
+            "POD": 0.16729021913415287,
+            "FAR": 0.9358080393765381,
+            "CSI": 0.048647808517252096,
+            "precision": 0.06419196062346186
+          },
+          "top100": {
+            "preds": 8535,
+            "gt": 1871,
+            "hits": 478,
+            "misses": 1393,
+            "false_alarms": 8057,
+            "POD": 0.2554783538214858,
+            "FAR": 0.9439953134153486,
+            "CSI": 0.04814665592264303,
+            "precision": 0.056004686584651436
+          },
+          "top150": {
+            "preds": 11046,
+            "gt": 1871,
+            "hits": 529,
+            "misses": 1342,
+            "false_alarms": 10517,
+            "POD": 0.2827365045430251,
+            "FAR": 0.952109360854608,
+            "CSI": 0.04270261543429125,
+            "precision": 0.047890639145391996
+          },
+          "top280": {
+            "preds": 12654,
+            "gt": 1871,
+            "hits": 560,
+            "misses": 1311,
+            "false_alarms": 12094,
+            "POD": 0.2993051843933725,
+            "FAR": 0.9557452189031136,
+            "CSI": 0.040100250626566414,
+            "precision": 0.04425478109688636
+          }
+        },
+        "prob": {
+          "top5": {
+            "preds": 500,
+            "gt": 1871,
+            "hits": 46,
+            "misses": 1825,
+            "false_alarms": 454,
+            "POD": 0.024585783003741316,
+            "FAR": 0.908,
+            "CSI": 0.01978494623655914,
+            "precision": 0.092
+          },
+          "top10": {
+            "preds": 1000,
+            "gt": 1871,
+            "hits": 82,
+            "misses": 1789,
+            "false_alarms": 918,
+            "POD": 0.043826830571886695,
+            "FAR": 0.918,
+            "CSI": 0.029401219074937254,
+            "precision": 0.082
+          },
+          "top20": {
+            "preds": 2000,
+            "gt": 1871,
+            "hits": 146,
+            "misses": 1725,
+            "false_alarms": 1854,
+            "POD": 0.07803313735970069,
+            "FAR": 0.927,
+            "CSI": 0.03919463087248322,
+            "precision": 0.073
+          },
+          "top34": {
+            "preds": 3389,
+            "gt": 1871,
+            "hits": 223,
+            "misses": 1648,
+            "false_alarms": 3166,
+            "POD": 0.11918760021378942,
+            "FAR": 0.9341988787252877,
+            "CSI": 0.04427238435576732,
+            "precision": 0.0658011212747123
+          },
+          "top50": {
+            "preds": 4876,
+            "gt": 1871,
+            "hits": 289,
+            "misses": 1582,
+            "false_alarms": 4587,
+            "POD": 0.1544628540887226,
+            "FAR": 0.9407301066447908,
+            "CSI": 0.04475069681015794,
+            "precision": 0.059269893355209186
+          },
+          "top100": {
+            "preds": 8535,
+            "gt": 1871,
+            "hits": 451,
+            "misses": 1420,
+            "false_alarms": 8084,
+            "POD": 0.2410475681453768,
+            "FAR": 0.9471587580550673,
+            "CSI": 0.045303867403314914,
+            "precision": 0.05284124194493263
+          },
+          "top150": {
+            "preds": 11046,
+            "gt": 1871,
+            "hits": 528,
+            "misses": 1343,
+            "false_alarms": 10518,
+            "POD": 0.2822020309994655,
+            "FAR": 0.9521998913633895,
+            "CSI": 0.04261845185244975,
+            "precision": 0.047800108636610536
+          },
+          "top280": {
+            "preds": 12654,
+            "gt": 1871,
+            "hits": 561,
+            "misses": 1310,
+            "false_alarms": 12093,
+            "POD": 0.2998396579369321,
+            "FAR": 0.9556661925082978,
+            "CSI": 0.040174735032941854,
+            "precision": 0.04433380749170223
+          }
+        },
+        "hm_val": {
+          "top5": {
+            "preds": 500,
+            "gt": 1871,
+            "hits": 28,
+            "misses": 1843,
+            "false_alarms": 472,
+            "POD": 0.014965259219668627,
+            "FAR": 0.944,
+            "CSI": 0.01195049082373026,
+            "precision": 0.056
+          },
+          "top10": {
+            "preds": 1000,
+            "gt": 1871,
+            "hits": 63,
+            "misses": 1808,
+            "false_alarms": 937,
+            "POD": 0.03367183324425441,
+            "FAR": 0.937,
+            "CSI": 0.022435897435897436,
+            "precision": 0.063
+          },
+          "top20": {
+            "preds": 2000,
+            "gt": 1871,
+            "hits": 129,
+            "misses": 1742,
+            "false_alarms": 1871,
+            "POD": 0.0689470871191876,
+            "FAR": 0.9355,
+            "CSI": 0.0344735435595938,
+            "precision": 0.0645
+          },
+          "top34": {
+            "preds": 3389,
+            "gt": 1871,
+            "hits": 209,
+            "misses": 1662,
+            "false_alarms": 3180,
+            "POD": 0.11170497060395511,
+            "FAR": 0.9383298908232517,
+            "CSI": 0.041377944961393784,
+            "precision": 0.061670109176748304
+          },
+          "top50": {
+            "preds": 4876,
+            "gt": 1871,
+            "hits": 289,
+            "misses": 1582,
+            "false_alarms": 4587,
+            "POD": 0.1544628540887226,
+            "FAR": 0.9407301066447908,
+            "CSI": 0.04475069681015794,
+            "precision": 0.059269893355209186
+          },
+          "top100": {
+            "preds": 8535,
+            "gt": 1871,
+            "hits": 455,
+            "misses": 1416,
+            "false_alarms": 8080,
+            "POD": 0.2431854623196152,
+            "FAR": 0.9466900995899239,
+            "CSI": 0.045724047834388507,
+            "precision": 0.053309900410076154
+          },
+          "top150": {
+            "preds": 11046,
+            "gt": 1871,
+            "hits": 531,
+            "misses": 1340,
+            "false_alarms": 10515,
+            "POD": 0.2838054516301443,
+            "FAR": 0.9519282998370451,
+            "CSI": 0.04287098336831907,
+            "precision": 0.048071700162954915
+          },
+          "top280": {
+            "preds": 12654,
+            "gt": 1871,
+            "hits": 561,
+            "misses": 1310,
+            "false_alarms": 12093,
+            "POD": 0.2998396579369321,
+            "FAR": 0.9556661925082978,
+            "CSI": 0.040174735032941854,
+            "precision": 0.04433380749170223
+          }
+        },
+        "prob_x_hm_unnormalised": {
+          "top5": {
+            "preds": 500,
+            "gt": 1871,
+            "hits": 41,
+            "misses": 1830,
+            "false_alarms": 459,
+            "POD": 0.021913415285943347,
+            "FAR": 0.918,
+            "CSI": 0.01759656652360515,
+            "precision": 0.082
+          },
+          "top10": {
+            "preds": 1000,
+            "gt": 1871,
+            "hits": 81,
+            "misses": 1790,
+            "false_alarms": 919,
+            "POD": 0.0432923570283271,
+            "FAR": 0.919,
+            "CSI": 0.02903225806451613,
+            "precision": 0.081
+          },
+          "top20": {
+            "preds": 2000,
+            "gt": 1871,
+            "hits": 150,
+            "misses": 1721,
+            "false_alarms": 1850,
+            "POD": 0.08017103153393906,
+            "FAR": 0.925,
+            "CSI": 0.040311744154797095,
+            "precision": 0.075
+          },
+          "top34": {
+            "preds": 3389,
+            "gt": 1871,
+            "hits": 236,
+            "misses": 1635,
+            "false_alarms": 3153,
+            "POD": 0.12613575628006413,
+            "FAR": 0.9303629389200354,
+            "CSI": 0.046974522292993634,
+            "precision": 0.06963706107996459
+          },
+          "top50": {
+            "preds": 4876,
+            "gt": 1871,
+            "hits": 313,
+            "misses": 1558,
+            "false_alarms": 4563,
+            "POD": 0.16729021913415287,
+            "FAR": 0.9358080393765381,
+            "CSI": 0.048647808517252096,
+            "precision": 0.06419196062346186
+          },
+          "top100": {
+            "preds": 8535,
+            "gt": 1871,
+            "hits": 478,
+            "misses": 1393,
+            "false_alarms": 8057,
+            "POD": 0.2554783538214858,
+            "FAR": 0.9439953134153486,
+            "CSI": 0.04814665592264303,
+            "precision": 0.056004686584651436
+          },
+          "top150": {
+            "preds": 11046,
+            "gt": 1871,
+            "hits": 529,
+            "misses": 1342,
+            "false_alarms": 10517,
+            "POD": 0.2827365045430251,
+            "FAR": 0.952109360854608,
+            "CSI": 0.04270261543429125,
+            "precision": 0.047890639145391996
+          },
+          "top280": {
+            "preds": 12654,
+            "gt": 1871,
+            "hits": 560,
+            "misses": 1311,
+            "false_alarms": 12094,
+            "POD": 0.2993051843933725,
+            "FAR": 0.9557452189031136,
+            "CSI": 0.040100250626566414,
+            "precision": 0.04425478109688636
+          }
+        }
+      },
+      "topN_oracle_uses_split_gt_NOT_an_operating_point": {
+        "1x_gt_count": {
+          "preds": 1871,
+          "gt": 1871,
+          "hits": 182,
+          "misses": 1689,
+          "false_alarms": 1689,
+          "POD": 0.09727418492784608,
+          "FAR": 0.9027258150721539,
+          "CSI": 0.05112359550561798,
+          "precision": 0.09727418492784608
+        },
+        "2x_gt_count": {
+          "preds": 3722,
+          "gt": 1871,
+          "hits": 320,
+          "misses": 1551,
+          "false_alarms": 3402,
+          "POD": 0.17103153393907003,
+          "FAR": 0.9140247178936056,
+          "CSI": 0.06068651621467855,
+          "precision": 0.08597528210639441
+        },
+        "3x_gt_count": {
+          "preds": 5504,
+          "gt": 1871,
+          "hits": 410,
+          "misses": 1461,
+          "false_alarms": 5094,
+          "POD": 0.21913415285943347,
+          "FAR": 0.9255087209302325,
+          "CSI": 0.05886575735821967,
+          "precision": 0.07449127906976744
+        }
+      },
+      "fine_prob_threshold_sweep": {
+        "0.20": {
+          "preds": 12766,
+          "gt": 1871,
+          "hits": 562,
+          "misses": 1309,
+          "false_alarms": 12204,
+          "POD": 0.3003741314804917,
+          "FAR": 0.955976813410622,
+          "CSI": 0.03992895204262877,
+          "precision": 0.04402318658937804
+        },
+        "0.22": {
+          "preds": 12749,
+          "gt": 1871,
+          "hits": 562,
+          "misses": 1309,
+          "false_alarms": 12187,
+          "POD": 0.3003741314804917,
+          "FAR": 0.9559181112244097,
+          "CSI": 0.03997723716033575,
+          "precision": 0.044081888775590244
+        },
+        "0.24": {
+          "preds": 12714,
+          "gt": 1871,
+          "hits": 562,
+          "misses": 1309,
+          "false_alarms": 12152,
+          "POD": 0.3003741314804917,
+          "FAR": 0.9557967594777411,
+          "CSI": 0.040077016330314484,
+          "precision": 0.04420324052225893
+        },
+        "0.26": {
+          "preds": 12682,
+          "gt": 1871,
+          "hits": 562,
+          "misses": 1309,
+          "false_alarms": 12120,
+          "POD": 0.3003741314804917,
+          "FAR": 0.9556852231509225,
+          "CSI": 0.0401686798656279,
+          "precision": 0.044314776849077434
+        },
+        "0.28": {
+          "preds": 12621,
+          "gt": 1871,
+          "hits": 562,
+          "misses": 1309,
+          "false_alarms": 12059,
+          "POD": 0.3003741314804917,
+          "FAR": 0.9554710403296094,
+          "CSI": 0.04034458004307251,
+          "precision": 0.04452895967039062
+        },
+        "0.30": {
+          "preds": 12546,
+          "gt": 1871,
+          "hits": 562,
+          "misses": 1309,
+          "false_alarms": 11984,
+          "POD": 0.3003741314804917,
+          "FAR": 0.9552048461661087,
+          "CSI": 0.04056297365571996,
+          "precision": 0.04479515383389128
+        },
+        "0.32": {
+          "preds": 12431,
+          "gt": 1871,
+          "hits": 561,
+          "misses": 1310,
+          "false_alarms": 11870,
+          "POD": 0.2998396579369321,
+          "FAR": 0.9548708872978843,
+          "CSI": 0.04082672294592824,
+          "precision": 0.04512911270211568
+        },
+        "0.34": {
+          "preds": 12271,
+          "gt": 1871,
+          "hits": 560,
+          "misses": 1311,
+          "false_alarms": 11711,
+          "POD": 0.2993051843933725,
+          "FAR": 0.9543639475185397,
+          "CSI": 0.04123104108378737,
+          "precision": 0.045636052481460354
+        },
+        "0.36": {
+          "preds": 12042,
+          "gt": 1871,
+          "hits": 560,
+          "misses": 1311,
+          "false_alarms": 11482,
+          "POD": 0.2993051843933725,
+          "FAR": 0.9534960969938548,
+          "CSI": 0.04193814124166854,
+          "precision": 0.04650390300614516
+        },
+        "0.38": {
+          "preds": 11718,
+          "gt": 1871,
+          "hits": 554,
+          "misses": 1317,
+          "false_alarms": 11164,
+          "POD": 0.29609834313201494,
+          "FAR": 0.9527223075610173,
+          "CSI": 0.042500958956655156,
+          "precision": 0.04727769243898276
+        },
+        "0.40": {
+          "preds": 11346,
+          "gt": 1871,
+          "hits": 551,
+          "misses": 1320,
+          "false_alarms": 10795,
+          "POD": 0.2944949225013362,
+          "FAR": 0.9514366296492156,
+          "CSI": 0.04350228959418917,
+          "precision": 0.04856337035078442
+        },
+        "0.42": {
+          "preds": 10903,
+          "gt": 1871,
+          "hits": 546,
+          "misses": 1325,
+          "false_alarms": 10357,
+          "POD": 0.2918225547835382,
+          "FAR": 0.9499220398055581,
+          "CSI": 0.04465161923454367,
+          "precision": 0.0500779601944419
+        },
+        "0.44": {
+          "preds": 10362,
+          "gt": 1871,
+          "hits": 538,
+          "misses": 1333,
+          "false_alarms": 9824,
+          "POD": 0.28754676643506144,
+          "FAR": 0.9480795213279289,
+          "CSI": 0.04600256519880291,
+          "precision": 0.05192047867207103
+        },
+        "0.46": {
+          "preds": 9779,
+          "gt": 1871,
+          "hits": 531,
+          "misses": 1340,
+          "false_alarms": 9248,
+          "POD": 0.2838054516301443,
+          "FAR": 0.9456999693220166,
+          "CSI": 0.04775609317384657,
+          "precision": 0.05430003067798343
+        },
+        "0.48": {
+          "preds": 9350,
+          "gt": 1871,
+          "hits": 524,
+          "misses": 1347,
+          "false_alarms": 8826,
+          "POD": 0.28006413682522713,
+          "FAR": 0.9439572192513369,
+          "CSI": 0.04898569692437132,
+          "precision": 0.056042780748663104
+        },
+        "0.50": {
+          "preds": 8864,
+          "gt": 1871,
+          "hits": 505,
+          "misses": 1366,
+          "false_alarms": 8359,
+          "POD": 0.2699091394975949,
+          "FAR": 0.9430279783393501,
+          "CSI": 0.04936461388074291,
+          "precision": 0.05697202166064982
+        },
+        "0.52": {
+          "preds": 8394,
+          "gt": 1871,
+          "hits": 494,
+          "misses": 1377,
+          "false_alarms": 7900,
+          "POD": 0.2640299305184393,
+          "FAR": 0.9411484393614487,
+          "CSI": 0.050557773001739845,
+          "precision": 0.05885156063855135
+        },
+        "0.54": {
+          "preds": 7932,
+          "gt": 1871,
+          "hits": 478,
+          "misses": 1393,
+          "false_alarms": 7454,
+          "POD": 0.2554783538214858,
+          "FAR": 0.9397377710539586,
+          "CSI": 0.05126005361930295,
+          "precision": 0.06026222894604135
+        },
+        "0.56": {
+          "preds": 7484,
+          "gt": 1871,
+          "hits": 463,
+          "misses": 1408,
+          "false_alarms": 7021,
+          "POD": 0.24746125066809194,
+          "FAR": 0.938134687332977,
+          "CSI": 0.05206927575348628,
+          "precision": 0.061865312667022984
+        },
+        "0.58": {
+          "preds": 7056,
+          "gt": 1871,
+          "hits": 451,
+          "misses": 1420,
+          "false_alarms": 6605,
+          "POD": 0.2410475681453768,
+          "FAR": 0.9360827664399093,
+          "CSI": 0.05320906087777254,
+          "precision": 0.0639172335600907
+        },
+        "0.60": {
+          "preds": 6639,
+          "gt": 1871,
+          "hits": 436,
+          "misses": 1435,
+          "false_alarms": 6203,
+          "POD": 0.2330304649919829,
+          "FAR": 0.9343274589546618,
+          "CSI": 0.054000495417389154,
+          "precision": 0.06567254104533815
+        },
+        "0.62": {
+          "preds": 6183,
+          "gt": 1871,
+          "hits": 417,
+          "misses": 1454,
+          "false_alarms": 5766,
+          "POD": 0.22287546766435062,
+          "FAR": 0.9325570111596313,
+          "CSI": 0.05460259264108943,
+          "precision": 0.06744298884036876
+        },
+        "0.64": {
+          "preds": 5750,
+          "gt": 1871,
+          "hits": 404,
+          "misses": 1467,
+          "false_alarms": 5346,
+          "POD": 0.2159273115980759,
+          "FAR": 0.9297391304347826,
+          "CSI": 0.055978938617153945,
+          "precision": 0.07026086956521739
+        },
+        "0.66": {
+          "preds": 5292,
+          "gt": 1871,
+          "hits": 380,
+          "misses": 1491,
+          "false_alarms": 4912,
+          "POD": 0.20309994655264565,
+          "FAR": 0.9281934996220711,
+          "CSI": 0.056022408963585436,
+          "precision": 0.07180650037792895
+        },
+        "0.68": {
+          "preds": 4835,
+          "gt": 1871,
+          "hits": 357,
+          "misses": 1514,
+          "false_alarms": 4478,
+          "POD": 0.190807055050775,
+          "FAR": 0.9261633919338159,
+          "CSI": 0.05622932745314223,
+          "precision": 0.07383660806618407
+        },
+        "0.70": {
+          "preds": 4379,
+          "gt": 1871,
+          "hits": 327,
+          "misses": 1544,
+          "false_alarms": 4052,
+          "POD": 0.17477284874398719,
+          "FAR": 0.9253254167618178,
+          "CSI": 0.0552085092014182,
+          "precision": 0.07467458323818223
+        },
+        "0.72": {
+          "preds": 3881,
+          "gt": 1871,
+          "hits": 306,
+          "misses": 1565,
+          "false_alarms": 3575,
+          "POD": 0.1635489043292357,
+          "FAR": 0.9211543416645195,
+          "CSI": 0.05618802791039295,
+          "precision": 0.07884565833548055
+        },
+        "0.74": {
+          "preds": 3430,
+          "gt": 1871,
+          "hits": 275,
+          "misses": 1596,
+          "false_alarms": 3155,
+          "POD": 0.14698022447888828,
+          "FAR": 0.9198250728862973,
+          "CSI": 0.054715479506565856,
+          "precision": 0.08017492711370262
+        },
+        "0.76": {
+          "preds": 2914,
+          "gt": 1871,
+          "hits": 244,
+          "misses": 1627,
+          "false_alarms": 2670,
+          "POD": 0.13041154462854088,
+          "FAR": 0.9162663006177076,
+          "CSI": 0.053732658004844745,
+          "precision": 0.08373369938229239
+        },
+        "0.78": {
+          "preds": 2453,
+          "gt": 1871,
+          "hits": 208,
+          "misses": 1663,
+          "false_alarms": 2245,
+          "POD": 0.11117049706039552,
+          "FAR": 0.9152058703628211,
+          "CSI": 0.05053449951409135,
+          "precision": 0.08479412963717896
+        },
+        "0.80": {
+          "preds": 1989,
+          "gt": 1871,
+          "hits": 177,
+          "misses": 1694,
+          "false_alarms": 1812,
+          "POD": 0.09460181721004811,
+          "FAR": 0.9110105580693816,
+          "CSI": 0.04805864784143361,
+          "precision": 0.0889894419306184
+        },
+        "0.82": {
+          "preds": 1510,
+          "gt": 1871,
+          "hits": 140,
+          "misses": 1731,
+          "false_alarms": 1370,
+          "POD": 0.07482629609834313,
+          "FAR": 0.9072847682119205,
+          "CSI": 0.04319654427645788,
+          "precision": 0.09271523178807947
+        },
+        "0.84": {
+          "preds": 1089,
+          "gt": 1871,
+          "hits": 108,
+          "misses": 1763,
+          "false_alarms": 981,
+          "POD": 0.05772314270443613,
+          "FAR": 0.9008264462809917,
+          "CSI": 0.037868162692847124,
+          "precision": 0.09917355371900827
+        },
+        "0.86": {
+          "preds": 753,
+          "gt": 1871,
+          "hits": 77,
+          "misses": 1794,
+          "false_alarms": 676,
+          "POD": 0.04115446285408872,
+          "FAR": 0.897742363877822,
+          "CSI": 0.030231645072634473,
+          "precision": 0.10225763612217796
+        },
+        "0.88": {
+          "preds": 504,
+          "gt": 1871,
+          "hits": 45,
+          "misses": 1826,
+          "false_alarms": 459,
+          "POD": 0.024051309460181722,
+          "FAR": 0.9107142857142857,
+          "CSI": 0.019313304721030045,
+          "precision": 0.08928571428571429
+        },
+        "0.90": {
+          "preds": 304,
+          "gt": 1871,
+          "hits": 28,
+          "misses": 1843,
+          "false_alarms": 276,
+          "POD": 0.014965259219668627,
+          "FAR": 0.9078947368421053,
+          "CSI": 0.01304145319049837,
+          "precision": 0.09210526315789473
+        },
+        "0.92": {
+          "preds": 132,
+          "gt": 1871,
+          "hits": 18,
+          "misses": 1853,
+          "false_alarms": 114,
+          "POD": 0.009620523784072688,
+          "FAR": 0.8636363636363636,
+          "CSI": 0.00906801007556675,
+          "precision": 0.13636363636363635
+        },
+        "0.94": {
+          "preds": 39,
+          "gt": 1871,
+          "hits": 4,
+          "misses": 1867,
+          "false_alarms": 35,
+          "POD": 0.002137894174238375,
+          "FAR": 0.8974358974358975,
+          "CSI": 0.002098635886673662,
+          "precision": 0.10256410256410256
+        },
+        "0.96": {
+          "preds": 2,
+          "gt": 1871,
+          "hits": 0,
+          "misses": 1871,
+          "false_alarms": 2,
+          "POD": 0.0,
+          "FAR": 1.0,
+          "CSI": 0.0,
+          "precision": 0.0
+        },
+        "0.98": {
+          "preds": 0,
+          "gt": 1871,
+          "hits": 0,
+          "misses": 1871,
+          "false_alarms": 0,
+          "POD": 0.0,
+          "FAR": 0.0,
+          "CSI": 0.0,
+          "precision": 0.0
+        },
+        "1.00": {
+          "preds": 0,
+          "gt": 1871,
+          "hits": 0,
+          "misses": 1871,
+          "false_alarms": 0,
+          "POD": 0.0,
+          "FAR": 0.0,
+          "CSI": 0.0,
+          "precision": 0.0
+        }
+      },
+      "fine_prob_threshold_best_csi_tau_on_this_split": 0.68,
+      "false_alarm_geometry": {
+        "total_false_alarms": 12204,
+        "nearest_gt_distance_buckets": {
+          "le_30km_lost_bilateral_contest": 44,
+          "30_45km": 469,
+          "45_60km": 554,
+          "60_90km": 1249,
+          "90_150km": 2306,
+          "gt_150km": 7582,
+          "no_gt_in_timestamp": 0
+        },
+        "median_nearest_gt_km": 206.86210770362678,
+        "mean_nearest_gt_km": 326.8429604968187
+      },
+      "tp_vs_fa_auc_by_field": {
+        "prob": 0.681758999732892,
+        "score": 0.7055546515873099,
+        "hm_val": 0.6709245029049457,
+        "bt13_local": 0.3282520111835452,
+        "delta_bt13_local": 0.3982548018210003,
+        "b10_b13_local": 0.6821358232701256,
+        "b11_b13_local": 0.5581290948303514
+      },
+      "ap_by_ranking_key": {
+        "score": {
+          "AP": 0.027494808991687762,
+          "TP": 563,
+          "FP": 12203
+        },
+        "prob": {
+          "AP": 0.023991295533569462,
+          "TP": 562,
+          "FP": 12204
+        },
+        "hm_val": {
+          "AP": 0.020536897229965094,
+          "TP": 563,
+          "FP": 12203
+        },
+        "prob_x_hm_unnormalised": {
+          "AP": 0.025090606978237368,
+          "TP": 563,
+          "FP": 12203
+        },
+        "minus_bt13_local": {
+          "AP": 0.021510806037932935,
+          "TP": 562,
+          "FP": 12204
+        },
+        "minus_delta_bt13_local": {
+          "AP": 0.019097508093702042,
+          "TP": 562,
+          "FP": 12204
+        }
+      },
+      "ap_null_shuffled_within_timestamp": {
+        "reps": 20,
+        "mean": 0.014642711418342511,
+        "std": 0.0006074071241879303,
+        "min": 0.013778973183718783,
+        "max": 0.01582281366274228
+      },
+      "ap_reference_eval_operational_tiers": {
+        "AP": 0.027494808991687762,
+        "TP": 563,
+        "FP": 12203
+      },
+      "ap_implementation_agrees": true,
+      "per_timestamp_heatmap_max": {
+        "recovered_Hmax_median": 0.25894889047774966,
+        "recovered_Hmax_p10": 0.2295208703925251,
+        "recovered_Hmax_p90": 0.3236612918820982,
+        "corr_Hmax_vs_candidate_count": -0.38335089201290584,
+        "corr_Hmax_vs_gt_count": -0.09599809706992726,
+        "Hmax_median_on_zero_gt_ts": null,
+        "Hmax_median_on_positive_gt_ts": 0.25894889047774966
+      },
+      "gate_strength": {
+        "suppressed": 644,
+        "suppressed_pct_of_raw": 4.802386278896346,
+        "true_objects_lost_to_gate": 5,
+        "field_separation": {
+          "delta_bt13_local": {
+            "TP_median": -22.980018615722656,
+            "FA_median": -17.589996337890625,
+            "TP_p10": -54.40899963378906,
+            "FA_p10": -46.860006713867186
+          },
+          "b10_b13_local": {
+            "TP_median": -4.5149993896484375,
+            "FA_median": -8.279998779296875,
+            "TP_p10": -11.448011779785157,
+            "FA_p10": -28.719996643066406
+          },
+          "bt13_local": {
+            "TP_median": 235.94499969482422,
+            "FA_median": 250.8300018310547,
+            "TP_p10": 214.32599792480468,
+            "FA_p10": 219.2899932861328
+          }
+        }
+      },
+      "post_hoc_dedup_radius": {
+        "30km": {
+          "preds": 12766,
+          "gt": 1871,
+          "hits": 562,
+          "misses": 1309,
+          "false_alarms": 12204,
+          "POD": 0.3003741314804917,
+          "FAR": 0.955976813410622,
+          "CSI": 0.03992895204262877,
+          "precision": 0.04402318658937804
+        },
+        "45km": {
+          "preds": 10544,
+          "gt": 1871,
+          "hits": 476,
+          "misses": 1395,
+          "false_alarms": 10068,
+          "POD": 0.2544094067343666,
+          "FAR": 0.954855842185129,
+          "CSI": 0.03986933579026719,
+          "precision": 0.045144157814871015
+        },
+        "60km": {
+          "preds": 8584,
+          "gt": 1871,
+          "hits": 385,
+          "misses": 1486,
+          "false_alarms": 8199,
+          "POD": 0.20577231427044362,
+          "FAR": 0.9551491146318732,
+          "CSI": 0.038232373386295926,
+          "precision": 0.044850885368126744
+        },
+        "90km": {
+          "preds": 5974,
+          "gt": 1871,
+          "hits": 257,
+          "misses": 1614,
+          "false_alarms": 5717,
+          "POD": 0.1373597006948156,
+          "FAR": 0.9569802477402075,
+          "CSI": 0.033869267264101215,
+          "precision": 0.04301975225979243
+        }
+      },
+      "calibration_bypass": {
+        "dense_candidate_prob_mean": 0.6100210634477643,
+        "dense_candidate_prob_quantiles": {
+          "5": 0.35306429862976074,
+          "25": 0.46954434365034103,
+          "50": 0.6113981306552887,
+          "75": 0.7487081438302994,
+          "95": 0.8685750812292099
+        },
+        "window_level_n": 30600,
+        "window_level_pos_rate": 0.14235293865203857,
+        "window_p_raw_quantiles": {
+          "5": 0.13469351728700746,
+          "25": 0.22183590718877771,
+          "50": 0.3235085010040884,
+          "75": 0.455387004036484,
+          "95": 0.7589962455515797
+        },
+        "window_p_cal_quantiles": {
+          "5": 0.032413793103448274,
+          "25": 0.055162659123055166,
+          "50": 0.07526881720430108,
+          "75": 0.10891578167448752,
+          "95": 0.5973597359735974
+        },
+        "frac_windows_p_raw_ge_0.20": 0.8056209150326797,
+        "frac_windows_p_cal_ge_tau_dev": 0.15522875816993464,
+        "dense_prob_mapped_through_window_isotonic_quantiles": {
+          "5": 0.07692307692307693,
+          "25": 0.10891578167448752,
+          "50": 0.4117647058823529,
+          "75": 0.5973597359735974,
+          "95": 0.7183098591549296
+        },
+        "frac_dense_candidates_surviving_calibrated_tau_dev": 0.6127996240012533,
+        "caveat": "Dense prob is the Hann-blended CNN-only sigmoid; the isotonic map was fitted on the CNN+GBDT window blend. Indicative, not an exact recalibration."
+      }
+    },
+    "benchmark": {
+      "n_timestamps": 30,
+      "emission_budget": {
+        "total_gt_objects": 463,
+        "raw_candidates": 3327,
+        "post_gating_candidates": 3159,
+        "gt_per_ts_mean": 15.433333333333334,
+        "candidates_per_ts_mean": 105.3,
+        "candidates_per_ts_median": 88.0,
+        "candidates_per_ts_p90": 177.50000000000003,
+        "candidates_per_ts_max": 256,
+        "emission_ratio": 6.822894168466522,
+        "structural_FAR_floor_perfect_discrimination": 0.853434631212409,
+        "actual_FAR": 0.9616967394745173,
+        "actual_POD": 0.2613390928725702,
+        "actual_CSI": 0.0345615538417595,
+        "preds_needed_for_FAR_50_at_current_hits": 242,
+        "preds_needed_for_FAR_70_at_current_hits": 404,
+        "zero_gt_timestamps": 0,
+        "candidates_on_zero_gt_timestamps": 0
+      },
+      "tolerance_sensitivity": {
+        "15km": {
+          "preds": 3159,
+          "gt": 463,
+          "hits": 53,
+          "misses": 410,
+          "false_alarms": 3106,
+          "POD": 0.11447084233261338,
+          "FAR": 0.9832225387780943,
+          "CSI": 0.014850098066685346,
+          "precision": 0.016777461221905668
+        },
+        "30km": {
+          "preds": 3159,
+          "gt": 463,
+          "hits": 121,
+          "misses": 342,
+          "false_alarms": 3038,
+          "POD": 0.2613390928725702,
+          "FAR": 0.9616967394745173,
+          "CSI": 0.0345615538417595,
+          "precision": 0.038303260525482746
+        },
+        "45km": {
+          "preds": 3159,
+          "gt": 463,
+          "hits": 174,
+          "misses": 289,
+          "false_alarms": 2985,
+          "POD": 0.3758099352051836,
+          "FAR": 0.9449192782526116,
+          "CSI": 0.05046403712296984,
+          "precision": 0.055080721747388414
+        },
+        "60km": {
+          "preds": 3159,
+          "gt": 463,
+          "hits": 213,
+          "misses": 250,
+          "false_alarms": 2946,
+          "POD": 0.46004319654427644,
+          "FAR": 0.932573599240266,
+          "CSI": 0.06248166617776474,
+          "precision": 0.06742640075973409
+        },
+        "90km": {
+          "preds": 3159,
+          "gt": 463,
+          "hits": 270,
+          "misses": 193,
+          "false_alarms": 2889,
+          "POD": 0.5831533477321814,
+          "FAR": 0.9145299145299145,
+          "CSI": 0.0805489260143198,
+          "precision": 0.08547008547008547
+        },
+        "120km": {
+          "preds": 3159,
+          "gt": 463,
+          "hits": 314,
+          "misses": 149,
+          "false_alarms": 2845,
+          "POD": 0.6781857451403888,
+          "FAR": 0.9006014561570117,
+          "CSI": 0.09492140266021766,
+          "precision": 0.09939854384298828
+        }
+      },
+      "topN_budget_by_ranking_key": {
+        "score": {
+          "top5": {
+            "preds": 150,
+            "gt": 463,
+            "hits": 16,
+            "misses": 447,
+            "false_alarms": 134,
+            "POD": 0.03455723542116631,
+            "FAR": 0.8933333333333333,
+            "CSI": 0.02680067001675042,
+            "precision": 0.10666666666666667
+          },
+          "top10": {
+            "preds": 300,
+            "gt": 463,
+            "hits": 21,
+            "misses": 442,
+            "false_alarms": 279,
+            "POD": 0.04535637149028078,
+            "FAR": 0.93,
+            "CSI": 0.02830188679245283,
+            "precision": 0.07
+          },
+          "top20": {
+            "preds": 600,
+            "gt": 463,
+            "hits": 47,
+            "misses": 416,
+            "false_alarms": 553,
+            "POD": 0.10151187904967603,
+            "FAR": 0.9216666666666666,
+            "CSI": 0.04625984251968504,
+            "precision": 0.07833333333333334
+          },
+          "top34": {
+            "preds": 1020,
+            "gt": 463,
+            "hits": 62,
+            "misses": 401,
+            "false_alarms": 958,
+            "POD": 0.13390928725701945,
+            "FAR": 0.9392156862745098,
+            "CSI": 0.043631245601688955,
+            "precision": 0.060784313725490195
+          },
+          "top50": {
+            "preds": 1494,
+            "gt": 463,
+            "hits": 82,
+            "misses": 381,
+            "false_alarms": 1412,
+            "POD": 0.1771058315334773,
+            "FAR": 0.9451137884872824,
+            "CSI": 0.04373333333333333,
+            "precision": 0.05488621151271754
+          },
+          "top100": {
+            "preds": 2379,
+            "gt": 463,
+            "hits": 110,
+            "misses": 353,
+            "false_alarms": 2269,
+            "POD": 0.23758099352051837,
+            "FAR": 0.9537620849096259,
+            "CSI": 0.04026354319180088,
+            "precision": 0.04623791509037411
+          },
+          "top150": {
+            "preds": 2898,
+            "gt": 463,
+            "hits": 118,
+            "misses": 345,
+            "false_alarms": 2780,
+            "POD": 0.2548596112311015,
+            "FAR": 0.9592822636300897,
+            "CSI": 0.036386062288004936,
+            "precision": 0.04071773636991028
+          },
+          "top280": {
+            "preds": 3159,
+            "gt": 463,
+            "hits": 121,
+            "misses": 342,
+            "false_alarms": 3038,
+            "POD": 0.2613390928725702,
+            "FAR": 0.9616967394745173,
+            "CSI": 0.0345615538417595,
+            "precision": 0.038303260525482746
+          }
+        },
+        "prob": {
+          "top5": {
+            "preds": 150,
+            "gt": 463,
+            "hits": 14,
+            "misses": 449,
+            "false_alarms": 136,
+            "POD": 0.03023758099352052,
+            "FAR": 0.9066666666666666,
+            "CSI": 0.02337228714524207,
+            "precision": 0.09333333333333334
+          },
+          "top10": {
+            "preds": 300,
+            "gt": 463,
+            "hits": 25,
+            "misses": 438,
+            "false_alarms": 275,
+            "POD": 0.05399568034557235,
+            "FAR": 0.9166666666666666,
+            "CSI": 0.03387533875338753,
+            "precision": 0.08333333333333333
+          },
+          "top20": {
+            "preds": 600,
+            "gt": 463,
+            "hits": 41,
+            "misses": 422,
+            "false_alarms": 559,
+            "POD": 0.08855291576673865,
+            "FAR": 0.9316666666666666,
+            "CSI": 0.040117416829745595,
+            "precision": 0.06833333333333333
+          },
+          "top34": {
+            "preds": 1020,
+            "gt": 463,
+            "hits": 56,
+            "misses": 407,
+            "false_alarms": 964,
+            "POD": 0.12095032397408208,
+            "FAR": 0.9450980392156862,
+            "CSI": 0.039243167484232656,
+            "precision": 0.054901960784313725
+          },
+          "top50": {
+            "preds": 1494,
+            "gt": 463,
+            "hits": 83,
+            "misses": 380,
+            "false_alarms": 1411,
+            "POD": 0.17926565874730022,
+            "FAR": 0.9444444444444444,
+            "CSI": 0.04429028815368197,
+            "precision": 0.05555555555555555
+          },
+          "top100": {
+            "preds": 2379,
+            "gt": 463,
+            "hits": 106,
+            "misses": 357,
+            "false_alarms": 2273,
+            "POD": 0.22894168466522677,
+            "FAR": 0.955443463640185,
+            "CSI": 0.03874269005847953,
+            "precision": 0.04455653635981505
+          },
+          "top150": {
+            "preds": 2898,
+            "gt": 463,
+            "hits": 117,
+            "misses": 346,
+            "false_alarms": 2781,
+            "POD": 0.2526997840172786,
+            "FAR": 0.9596273291925466,
+            "CSI": 0.03606658446362515,
+            "precision": 0.040372670807453416
+          },
+          "top280": {
+            "preds": 3159,
+            "gt": 463,
+            "hits": 121,
+            "misses": 342,
+            "false_alarms": 3038,
+            "POD": 0.2613390928725702,
+            "FAR": 0.9616967394745173,
+            "CSI": 0.0345615538417595,
+            "precision": 0.038303260525482746
+          }
+        },
+        "hm_val": {
+          "top5": {
+            "preds": 150,
+            "gt": 463,
+            "hits": 7,
+            "misses": 456,
+            "false_alarms": 143,
+            "POD": 0.01511879049676026,
+            "FAR": 0.9533333333333334,
+            "CSI": 0.01155115511551155,
+            "precision": 0.04666666666666667
+          },
+          "top10": {
+            "preds": 300,
+            "gt": 463,
+            "hits": 17,
+            "misses": 446,
+            "false_alarms": 283,
+            "POD": 0.0367170626349892,
+            "FAR": 0.9433333333333334,
+            "CSI": 0.022788203753351208,
+            "precision": 0.056666666666666664
+          },
+          "top20": {
+            "preds": 600,
+            "gt": 463,
+            "hits": 38,
+            "misses": 425,
+            "false_alarms": 562,
+            "POD": 0.08207343412526998,
+            "FAR": 0.9366666666666666,
+            "CSI": 0.037073170731707315,
+            "precision": 0.06333333333333334
+          },
+          "top34": {
+            "preds": 1020,
+            "gt": 463,
+            "hits": 57,
+            "misses": 406,
+            "false_alarms": 963,
+            "POD": 0.12311015118790497,
+            "FAR": 0.9441176470588235,
+            "CSI": 0.03997194950911641,
+            "precision": 0.05588235294117647
+          },
+          "top50": {
+            "preds": 1494,
+            "gt": 463,
+            "hits": 75,
+            "misses": 388,
+            "false_alarms": 1419,
+            "POD": 0.16198704103671707,
+            "FAR": 0.9497991967871486,
+            "CSI": 0.039851222104144525,
+            "precision": 0.050200803212851405
+          },
+          "top100": {
+            "preds": 2379,
+            "gt": 463,
+            "hits": 105,
+            "misses": 358,
+            "false_alarms": 2274,
+            "POD": 0.2267818574514039,
+            "FAR": 0.9558638083228247,
+            "CSI": 0.03836317135549872,
+            "precision": 0.044136191677175286
+          },
+          "top150": {
+            "preds": 2898,
+            "gt": 463,
+            "hits": 117,
+            "misses": 346,
+            "false_alarms": 2781,
+            "POD": 0.2526997840172786,
+            "FAR": 0.9596273291925466,
+            "CSI": 0.03606658446362515,
+            "precision": 0.040372670807453416
+          },
+          "top280": {
+            "preds": 3159,
+            "gt": 463,
+            "hits": 121,
+            "misses": 342,
+            "false_alarms": 3038,
+            "POD": 0.2613390928725702,
+            "FAR": 0.9616967394745173,
+            "CSI": 0.0345615538417595,
+            "precision": 0.038303260525482746
+          }
+        },
+        "prob_x_hm_unnormalised": {
+          "top5": {
+            "preds": 150,
+            "gt": 463,
+            "hits": 16,
+            "misses": 447,
+            "false_alarms": 134,
+            "POD": 0.03455723542116631,
+            "FAR": 0.8933333333333333,
+            "CSI": 0.02680067001675042,
+            "precision": 0.10666666666666667
+          },
+          "top10": {
+            "preds": 300,
+            "gt": 463,
+            "hits": 21,
+            "misses": 442,
+            "false_alarms": 279,
+            "POD": 0.04535637149028078,
+            "FAR": 0.93,
+            "CSI": 0.02830188679245283,
+            "precision": 0.07
+          },
+          "top20": {
+            "preds": 600,
+            "gt": 463,
+            "hits": 47,
+            "misses": 416,
+            "false_alarms": 553,
+            "POD": 0.10151187904967603,
+            "FAR": 0.9216666666666666,
+            "CSI": 0.04625984251968504,
+            "precision": 0.07833333333333334
+          },
+          "top34": {
+            "preds": 1020,
+            "gt": 463,
+            "hits": 62,
+            "misses": 401,
+            "false_alarms": 958,
+            "POD": 0.13390928725701945,
+            "FAR": 0.9392156862745098,
+            "CSI": 0.043631245601688955,
+            "precision": 0.060784313725490195
+          },
+          "top50": {
+            "preds": 1494,
+            "gt": 463,
+            "hits": 82,
+            "misses": 381,
+            "false_alarms": 1412,
+            "POD": 0.1771058315334773,
+            "FAR": 0.9451137884872824,
+            "CSI": 0.04373333333333333,
+            "precision": 0.05488621151271754
+          },
+          "top100": {
+            "preds": 2379,
+            "gt": 463,
+            "hits": 110,
+            "misses": 353,
+            "false_alarms": 2269,
+            "POD": 0.23758099352051837,
+            "FAR": 0.9537620849096259,
+            "CSI": 0.04026354319180088,
+            "precision": 0.04623791509037411
+          },
+          "top150": {
+            "preds": 2898,
+            "gt": 463,
+            "hits": 118,
+            "misses": 345,
+            "false_alarms": 2780,
+            "POD": 0.2548596112311015,
+            "FAR": 0.9592822636300897,
+            "CSI": 0.036386062288004936,
+            "precision": 0.04071773636991028
+          },
+          "top280": {
+            "preds": 3159,
+            "gt": 463,
+            "hits": 121,
+            "misses": 342,
+            "false_alarms": 3038,
+            "POD": 0.2613390928725702,
+            "FAR": 0.9616967394745173,
+            "CSI": 0.0345615538417595,
+            "precision": 0.038303260525482746
+          }
+        }
+      },
+      "topN_oracle_uses_split_gt_NOT_an_operating_point": {
+        "1x_gt_count": {
+          "preds": 463,
+          "gt": 463,
+          "hits": 41,
+          "misses": 422,
+          "false_alarms": 422,
+          "POD": 0.08855291576673865,
+          "FAR": 0.9114470842332614,
+          "CSI": 0.04632768361581921,
+          "precision": 0.08855291576673865
+        },
+        "2x_gt_count": {
+          "preds": 926,
+          "gt": 463,
+          "hits": 73,
+          "misses": 390,
+          "false_alarms": 853,
+          "POD": 0.15766738660907129,
+          "FAR": 0.9211663066954644,
+          "CSI": 0.05547112462006079,
+          "precision": 0.07883369330453564
+        },
+        "3x_gt_count": {
+          "preds": 1389,
+          "gt": 463,
+          "hits": 88,
+          "misses": 375,
+          "false_alarms": 1301,
+          "POD": 0.1900647948164147,
+          "FAR": 0.9366450683945284,
+          "CSI": 0.049886621315192746,
+          "precision": 0.06335493160547156
+        }
+      },
+      "fine_prob_threshold_sweep": {
+        "0.20": {
+          "preds": 3159,
+          "gt": 463,
+          "hits": 121,
+          "misses": 342,
+          "false_alarms": 3038,
+          "POD": 0.2613390928725702,
+          "FAR": 0.9616967394745173,
+          "CSI": 0.0345615538417595,
+          "precision": 0.038303260525482746
+        },
+        "0.22": {
+          "preds": 3153,
+          "gt": 463,
+          "hits": 121,
+          "misses": 342,
+          "false_alarms": 3032,
+          "POD": 0.2613390928725702,
+          "FAR": 0.9616238503013004,
+          "CSI": 0.034620886981402005,
+          "precision": 0.03837614969869965
+        },
+        "0.24": {
+          "preds": 3144,
+          "gt": 463,
+          "hits": 121,
+          "misses": 342,
+          "false_alarms": 3023,
+          "POD": 0.2613390928725702,
+          "FAR": 0.9615139949109415,
+          "CSI": 0.034710269650028686,
+          "precision": 0.03848600508905852
+        },
+        "0.26": {
+          "preds": 3138,
+          "gt": 463,
+          "hits": 121,
+          "misses": 342,
+          "false_alarms": 3017,
+          "POD": 0.2613390928725702,
+          "FAR": 0.961440407903123,
+          "CSI": 0.03477011494252873,
+          "precision": 0.03855959209687699
+        },
+        "0.28": {
+          "preds": 3117,
+          "gt": 463,
+          "hits": 121,
+          "misses": 342,
+          "false_alarms": 2996,
+          "POD": 0.2613390928725702,
+          "FAR": 0.9611806223933269,
+          "CSI": 0.03498120844174617,
+          "precision": 0.03881937760667308
+        },
+        "0.30": {
+          "preds": 3095,
+          "gt": 463,
+          "hits": 121,
+          "misses": 342,
+          "false_alarms": 2974,
+          "POD": 0.2613390928725702,
+          "FAR": 0.9609046849757674,
+          "CSI": 0.03520512074483561,
+          "precision": 0.039095315024232635
+        },
+        "0.32": {
+          "preds": 3061,
+          "gt": 463,
+          "hits": 121,
+          "misses": 342,
+          "false_alarms": 2940,
+          "POD": 0.2613390928725702,
+          "FAR": 0.9604704344985299,
+          "CSI": 0.03555686159271231,
+          "precision": 0.03952956550147011
+        },
+        "0.34": {
+          "preds": 3025,
+          "gt": 463,
+          "hits": 121,
+          "misses": 342,
+          "false_alarms": 2904,
+          "POD": 0.2613390928725702,
+          "FAR": 0.96,
+          "CSI": 0.035937035937035934,
+          "precision": 0.04
+        },
+        "0.36": {
+          "preds": 2964,
+          "gt": 463,
+          "hits": 121,
+          "misses": 342,
+          "false_alarms": 2843,
+          "POD": 0.2613390928725702,
+          "FAR": 0.9591767881241565,
+          "CSI": 0.03660012099213551,
+          "precision": 0.04082321187584345
+        },
+        "0.38": {
+          "preds": 2848,
+          "gt": 463,
+          "hits": 121,
+          "misses": 342,
+          "false_alarms": 2727,
+          "POD": 0.2613390928725702,
+          "FAR": 0.9575140449438202,
+          "CSI": 0.03793103448275862,
+          "precision": 0.042485955056179775
+        },
+        "0.40": {
+          "preds": 2720,
+          "gt": 463,
+          "hits": 120,
+          "misses": 343,
+          "false_alarms": 2600,
+          "POD": 0.2591792656587473,
+          "FAR": 0.9558823529411765,
+          "CSI": 0.039177277179236046,
+          "precision": 0.04411764705882353
+        },
+        "0.42": {
+          "preds": 2596,
+          "gt": 463,
+          "hits": 118,
+          "misses": 345,
+          "false_alarms": 2478,
+          "POD": 0.2548596112311015,
+          "FAR": 0.9545454545454546,
+          "CSI": 0.04012240734444067,
+          "precision": 0.045454545454545456
+        },
+        "0.44": {
+          "preds": 2442,
+          "gt": 463,
+          "hits": 117,
+          "misses": 346,
+          "false_alarms": 2325,
+          "POD": 0.2526997840172786,
+          "FAR": 0.952088452088452,
+          "CSI": 0.04196556671449068,
+          "precision": 0.04791154791154791
+        },
+        "0.46": {
+          "preds": 2287,
+          "gt": 463,
+          "hits": 115,
+          "misses": 348,
+          "false_alarms": 2172,
+          "POD": 0.24838012958963282,
+          "FAR": 0.94971578487101,
+          "CSI": 0.04364326375711575,
+          "precision": 0.050284215128989944
+        },
+        "0.48": {
+          "preds": 2129,
+          "gt": 463,
+          "hits": 110,
+          "misses": 353,
+          "false_alarms": 2019,
+          "POD": 0.23758099352051837,
+          "FAR": 0.9483325504931893,
+          "CSI": 0.0443190975020145,
+          "precision": 0.05166744950681071
+        },
+        "0.50": {
+          "preds": 2009,
+          "gt": 463,
+          "hits": 107,
+          "misses": 356,
+          "false_alarms": 1902,
+          "POD": 0.23110151187904968,
+          "FAR": 0.9467396714783475,
+          "CSI": 0.045243128964059194,
+          "precision": 0.053260328521652564
+        },
+        "0.52": {
+          "preds": 1882,
+          "gt": 463,
+          "hits": 106,
+          "misses": 357,
+          "false_alarms": 1776,
+          "POD": 0.22894168466522677,
+          "FAR": 0.9436769394261424,
+          "CSI": 0.047342563644484144,
+          "precision": 0.0563230605738576
+        },
+        "0.54": {
+          "preds": 1768,
+          "gt": 463,
+          "hits": 100,
+          "misses": 363,
+          "false_alarms": 1668,
+          "POD": 0.2159827213822894,
+          "FAR": 0.9434389140271493,
+          "CSI": 0.04692632566870014,
+          "precision": 0.05656108597285068
+        },
+        "0.56": {
+          "preds": 1654,
+          "gt": 463,
+          "hits": 96,
+          "misses": 367,
+          "false_alarms": 1558,
+          "POD": 0.20734341252699784,
+          "FAR": 0.9419588875453446,
+          "CSI": 0.0475012370113805,
+          "precision": 0.05804111245465538
+        },
+        "0.58": {
+          "preds": 1541,
+          "gt": 463,
+          "hits": 94,
+          "misses": 369,
+          "false_alarms": 1447,
+          "POD": 0.20302375809935205,
+          "FAR": 0.9390006489292667,
+          "CSI": 0.049214659685863874,
+          "precision": 0.06099935107073329
+        },
+        "0.60": {
+          "preds": 1452,
+          "gt": 463,
+          "hits": 92,
+          "misses": 371,
+          "false_alarms": 1360,
+          "POD": 0.19870410367170627,
+          "FAR": 0.9366391184573003,
+          "CSI": 0.050466264399341744,
+          "precision": 0.06336088154269973
+        },
+        "0.62": {
+          "preds": 1356,
+          "gt": 463,
+          "hits": 90,
+          "misses": 373,
+          "false_alarms": 1266,
+          "POD": 0.19438444924406048,
+          "FAR": 0.9336283185840708,
+          "CSI": 0.05205320994794679,
+          "precision": 0.06637168141592921
+        },
+        "0.64": {
+          "preds": 1246,
+          "gt": 463,
+          "hits": 87,
+          "misses": 376,
+          "false_alarms": 1159,
+          "POD": 0.1879049676025918,
+          "FAR": 0.9301765650080257,
+          "CSI": 0.05363748458692972,
+          "precision": 0.06982343499197431
+        },
+        "0.66": {
+          "preds": 1124,
+          "gt": 463,
+          "hits": 83,
+          "misses": 380,
+          "false_alarms": 1041,
+          "POD": 0.17926565874730022,
+          "FAR": 0.9261565836298933,
+          "CSI": 0.05518617021276596,
+          "precision": 0.07384341637010676
+        },
+        "0.68": {
+          "preds": 1028,
+          "gt": 463,
+          "hits": 78,
+          "misses": 385,
+          "false_alarms": 950,
+          "POD": 0.16846652267818574,
+          "FAR": 0.9241245136186771,
+          "CSI": 0.055201698513800426,
+          "precision": 0.07587548638132295
+        },
+        "0.70": {
+          "preds": 922,
+          "gt": 463,
+          "hits": 73,
+          "misses": 390,
+          "false_alarms": 849,
+          "POD": 0.15766738660907129,
+          "FAR": 0.920824295010846,
+          "CSI": 0.055640243902439025,
+          "precision": 0.07917570498915401
+        },
+        "0.72": {
+          "preds": 828,
+          "gt": 463,
+          "hits": 63,
+          "misses": 400,
+          "false_alarms": 765,
+          "POD": 0.13606911447084233,
+          "FAR": 0.9239130434782609,
+          "CSI": 0.05130293159609121,
+          "precision": 0.07608695652173914
+        },
+        "0.74": {
+          "preds": 733,
+          "gt": 463,
+          "hits": 57,
+          "misses": 406,
+          "false_alarms": 676,
+          "POD": 0.12311015118790497,
+          "FAR": 0.922237380627558,
+          "CSI": 0.05004389815627744,
+          "precision": 0.07776261937244201
+        },
+        "0.76": {
+          "preds": 639,
+          "gt": 463,
+          "hits": 50,
+          "misses": 413,
+          "false_alarms": 589,
+          "POD": 0.1079913606911447,
+          "FAR": 0.9217527386541471,
+          "CSI": 0.04752851711026616,
+          "precision": 0.0782472613458529
+        },
+        "0.78": {
+          "preds": 539,
+          "gt": 463,
+          "hits": 44,
+          "misses": 419,
+          "false_alarms": 495,
+          "POD": 0.09503239740820735,
+          "FAR": 0.9183673469387755,
+          "CSI": 0.04592901878914405,
+          "precision": 0.08163265306122448
+        },
+        "0.80": {
+          "preds": 438,
+          "gt": 463,
+          "hits": 38,
+          "misses": 425,
+          "false_alarms": 400,
+          "POD": 0.08207343412526998,
+          "FAR": 0.91324200913242,
+          "CSI": 0.0440324449594438,
+          "precision": 0.0867579908675799
+        },
+        "0.82": {
+          "preds": 338,
+          "gt": 463,
+          "hits": 28,
+          "misses": 435,
+          "false_alarms": 310,
+          "POD": 0.06047516198704104,
+          "FAR": 0.9171597633136095,
+          "CSI": 0.03622250970245795,
+          "precision": 0.08284023668639054
+        },
+        "0.84": {
+          "preds": 244,
+          "gt": 463,
+          "hits": 16,
+          "misses": 447,
+          "false_alarms": 228,
+          "POD": 0.03455723542116631,
+          "FAR": 0.9344262295081968,
+          "CSI": 0.023154848046309694,
+          "precision": 0.06557377049180328
+        },
+        "0.86": {
+          "preds": 150,
+          "gt": 463,
+          "hits": 12,
+          "misses": 451,
+          "false_alarms": 138,
+          "POD": 0.02591792656587473,
+          "FAR": 0.92,
+          "CSI": 0.019966722129783693,
+          "precision": 0.08
+        },
+        "0.88": {
+          "preds": 79,
+          "gt": 463,
+          "hits": 6,
+          "misses": 457,
+          "false_alarms": 73,
+          "POD": 0.012958963282937365,
+          "FAR": 0.9240506329113924,
+          "CSI": 0.011194029850746268,
+          "precision": 0.0759493670886076
+        },
+        "0.90": {
+          "preds": 27,
+          "gt": 463,
+          "hits": 2,
+          "misses": 461,
+          "false_alarms": 25,
+          "POD": 0.004319654427645789,
+          "FAR": 0.9259259259259259,
+          "CSI": 0.004098360655737705,
+          "precision": 0.07407407407407407
+        },
+        "0.92": {
+          "preds": 1,
+          "gt": 463,
+          "hits": 0,
+          "misses": 463,
+          "false_alarms": 1,
+          "POD": 0.0,
+          "FAR": 1.0,
+          "CSI": 0.0,
+          "precision": 0.0
+        },
+        "0.94": {
+          "preds": 0,
+          "gt": 463,
+          "hits": 0,
+          "misses": 463,
+          "false_alarms": 0,
+          "POD": 0.0,
+          "FAR": 0.0,
+          "CSI": 0.0,
+          "precision": 0.0
+        },
+        "0.96": {
+          "preds": 0,
+          "gt": 463,
+          "hits": 0,
+          "misses": 463,
+          "false_alarms": 0,
+          "POD": 0.0,
+          "FAR": 0.0,
+          "CSI": 0.0,
+          "precision": 0.0
+        },
+        "0.98": {
+          "preds": 0,
+          "gt": 463,
+          "hits": 0,
+          "misses": 463,
+          "false_alarms": 0,
+          "POD": 0.0,
+          "FAR": 0.0,
+          "CSI": 0.0,
+          "precision": 0.0
+        },
+        "1.00": {
+          "preds": 0,
+          "gt": 463,
+          "hits": 0,
+          "misses": 463,
+          "false_alarms": 0,
+          "POD": 0.0,
+          "FAR": 0.0,
+          "CSI": 0.0,
+          "precision": 0.0
+        }
+      },
+      "fine_prob_threshold_best_csi_tau_on_this_split": 0.7,
+      "false_alarm_geometry": {
+        "total_false_alarms": 3038,
+        "nearest_gt_distance_buckets": {
+          "le_30km_lost_bilateral_contest": 4,
+          "30_45km": 96,
+          "45_60km": 126,
+          "60_90km": 281,
+          "90_150km": 550,
+          "gt_150km": 1981,
+          "no_gt_in_timestamp": 0
+        },
+        "median_nearest_gt_km": 229.63653780104016,
+        "mean_nearest_gt_km": 379.8930599672822
+      },
+      "tp_vs_fa_auc_by_field": {
+        "prob": 0.7098270393201269,
+        "score": 0.7181187057600966,
+        "hm_val": 0.6748622136137846,
+        "bt13_local": 0.31772615737844057,
+        "delta_bt13_local": 0.42201943427330946,
+        "b10_b13_local": 0.6957668431275469,
+        "b11_b13_local": 0.58768954129239
+      },
+      "ap_by_ranking_key": {
+        "score": {
+          "AP": 0.020876320323512724,
+          "TP": 121,
+          "FP": 3038
+        },
+        "prob": {
+          "AP": 0.019407539147076467,
+          "TP": 121,
+          "FP": 3038
+        },
+        "hm_val": {
+          "AP": 0.01628824159551708,
+          "TP": 121,
+          "FP": 3038
+        },
+        "prob_x_hm_unnormalised": {
+          "AP": 0.021383146842784504,
+          "TP": 121,
+          "FP": 3038
+        },
+        "minus_bt13_local": {
+          "AP": 0.01985278261066518,
+          "TP": 121,
+          "FP": 3038
+        },
+        "minus_delta_bt13_local": {
+          "AP": 0.013168642726270949,
+          "TP": 121,
+          "FP": 3038
+        }
+      },
+      "ap_null_shuffled_within_timestamp": {
+        "reps": 20,
+        "mean": 0.011214245269077059,
+        "std": 0.0009512951832897256,
+        "min": 0.009896865929842284,
+        "max": 0.013968151815637238
+      },
+      "ap_reference_eval_operational_tiers": {
+        "AP": 0.020876320323512724,
+        "TP": 121,
+        "FP": 3038
+      },
+      "ap_implementation_agrees": true,
+      "per_timestamp_heatmap_max": {
+        "recovered_Hmax_median": 0.2690279193111111,
+        "recovered_Hmax_p10": 0.23306565655171155,
+        "recovered_Hmax_p90": 0.3129241845798859,
+        "corr_Hmax_vs_candidate_count": -0.5186657501376681,
+        "corr_Hmax_vs_gt_count": -0.22319364276164178,
+        "Hmax_median_on_zero_gt_ts": null,
+        "Hmax_median_on_positive_gt_ts": 0.2690279193111111
+      },
+      "gate_strength": {
+        "suppressed": 168,
+        "suppressed_pct_of_raw": 5.049594229035167,
+        "true_objects_lost_to_gate": 2,
+        "field_separation": {
+          "delta_bt13_local": {
+            "TP_median": -22.1199951171875,
+            "FA_median": -17.665000915527344,
+            "TP_p10": -56.41998291015625,
+            "FA_p10": -49.65899810791016
+          },
+          "b10_b13_local": {
+            "TP_median": -4.69000244140625,
+            "FA_median": -8.094993591308594,
+            "TP_p10": -11.410003662109375,
+            "FA_p10": -29.646006774902343
+          },
+          "bt13_local": {
+            "TP_median": 238.55999755859375,
+            "FA_median": 250.489990234375,
+            "TP_p10": 215.97000122070312,
+            "FA_p10": 221.6189971923828
+          }
+        }
+      },
+      "post_hoc_dedup_radius": {
+        "30km": {
+          "preds": 3159,
+          "gt": 463,
+          "hits": 121,
+          "misses": 342,
+          "false_alarms": 3038,
+          "POD": 0.2613390928725702,
+          "FAR": 0.9616967394745173,
+          "CSI": 0.0345615538417595,
+          "precision": 0.038303260525482746
+        },
+        "45km": {
+          "preds": 2626,
+          "gt": 463,
+          "hits": 102,
+          "misses": 361,
+          "false_alarms": 2524,
+          "POD": 0.2203023758099352,
+          "FAR": 0.9611576542269612,
+          "CSI": 0.034147974556411116,
+          "precision": 0.03884234577303884
+        },
+        "60km": {
+          "preds": 2151,
+          "gt": 463,
+          "hits": 77,
+          "misses": 386,
+          "false_alarms": 2074,
+          "POD": 0.16630669546436286,
+          "FAR": 0.9642026964202697,
+          "CSI": 0.0303508080409933,
+          "precision": 0.03579730357973036
+        },
+        "90km": {
+          "preds": 1513,
+          "gt": 463,
+          "hits": 56,
+          "misses": 407,
+          "false_alarms": 1457,
+          "POD": 0.12095032397408208,
+          "FAR": 0.9629874421678783,
+          "CSI": 0.029166666666666667,
+          "precision": 0.037012557832121616
+        }
+      },
+      "calibration_bypass": {
+        "dense_candidate_prob_mean": 0.5881361068663019,
+        "dense_candidate_prob_quantiles": {
+          "5": 0.34914097785949705,
+          "25": 0.448764368891716,
+          "50": 0.5715278387069702,
+          "75": 0.7282862067222595,
+          "95": 0.8589200019836426
+        },
+        "window_level_n": 9180,
+        "window_level_pos_rate": 0.12799564003944397,
+        "window_p_raw_quantiles": {
+          "5": 0.13266777380398936,
+          "25": 0.2168940634576969,
+          "50": 0.3113864555478902,
+          "75": 0.43462294390854317,
+          "95": 0.7139435235572898
+        },
+        "window_p_cal_quantiles": {
+          "5": 0.032413793103448274,
+          "25": 0.04878048780487805,
+          "50": 0.07364787111622555,
+          "75": 0.10891578167448752,
+          "95": 0.5657894736842105
+        },
+        "frac_windows_p_raw_ge_0.20": 0.7946623093681917,
+        "frac_windows_p_cal_ge_tau_dev": 0.11949891067538126,
+        "dense_prob_mapped_through_window_isotonic_quantiles": {
+          "5": 0.07692307692307693,
+          "25": 0.10891578167448752,
+          "50": 0.3143534994068802,
+          "75": 0.5691056910569106,
+          "95": 0.6504424778761062
+        },
+        "frac_dense_candidates_surviving_calibrated_tau_dev": 0.551440329218107,
+        "caveat": "Dense prob is the Hann-blended CNN-only sigmoid; the isotonic map was fitted on the CNN+GBDT window blend. Indicative, not an exact recalibration."
+      }
+    },
+    "test": {
+      "n_timestamps": 200,
+      "emission_budget": {
+        "total_gt_objects": 6806,
+        "raw_candidates": 57667,
+        "post_gating_candidates": 55988,
+        "gt_per_ts_mean": 34.03,
+        "candidates_per_ts_mean": 279.94,
+        "candidates_per_ts_median": 275.5,
+        "candidates_per_ts_p90": 365.1,
+        "candidates_per_ts_max": 484,
+        "emission_ratio": 8.226270937408168,
+        "structural_FAR_floor_perfect_discrimination": 0.8784382367650211,
+        "actual_FAR": 0.949131956847896,
+        "actual_POD": 0.41845430502497794,
+        "actual_CSI": 0.04750942514930104,
+        "preds_needed_for_FAR_50_at_current_hits": 5696,
+        "preds_needed_for_FAR_70_at_current_hits": 9494,
+        "zero_gt_timestamps": 0,
+        "candidates_on_zero_gt_timestamps": 0
+      },
+      "tolerance_sensitivity": {
+        "15km": {
+          "preds": 55988,
+          "gt": 6806,
+          "hits": 1111,
+          "misses": 5695,
+          "false_alarms": 54877,
+          "POD": 0.16323831913017925,
+          "FAR": 0.9801564620990212,
+          "CSI": 0.01801144561710682,
+          "precision": 0.019843537900978783
+        },
+        "30km": {
+          "preds": 55988,
+          "gt": 6806,
+          "hits": 2848,
+          "misses": 3958,
+          "false_alarms": 53140,
+          "POD": 0.41845430502497794,
+          "FAR": 0.949131956847896,
+          "CSI": 0.04750942514930104,
+          "precision": 0.050868043152104025
+        },
+        "45km": {
+          "preds": 55988,
+          "gt": 6806,
+          "hits": 4111,
+          "misses": 2695,
+          "false_alarms": 51877,
+          "POD": 0.6040258595357038,
+          "FAR": 0.9265735514753162,
+          "CSI": 0.0700543598657192,
+          "precision": 0.07342644852468386
+        },
+        "60km": {
+          "preds": 55988,
+          "gt": 6806,
+          "hits": 4891,
+          "misses": 1915,
+          "false_alarms": 51097,
+          "POD": 0.7186306200411402,
+          "FAR": 0.9126419947131528,
+          "CSI": 0.08446885308187832,
+          "precision": 0.08735800528684719
+        },
+        "90km": {
+          "preds": 55988,
+          "gt": 6806,
+          "hits": 5725,
+          "misses": 1081,
+          "false_alarms": 50263,
+          "POD": 0.841169556273876,
+          "FAR": 0.8977459455597628,
+          "CSI": 0.1003171599292085,
+          "precision": 0.10225405444023719
+        },
+        "120km": {
+          "preds": 55988,
+          "gt": 6806,
+          "hits": 6100,
+          "misses": 706,
+          "false_alarms": 49888,
+          "POD": 0.8962679988245665,
+          "FAR": 0.8910480817317997,
+          "CSI": 0.1075951599816559,
+          "precision": 0.10895191826820033
+        }
+      },
+      "topN_budget_by_ranking_key": {
+        "score": {
+          "top5": {
+            "preds": 1000,
+            "gt": 6806,
+            "hits": 113,
+            "misses": 6693,
+            "false_alarms": 887,
+            "POD": 0.01660299735527476,
+            "FAR": 0.887,
+            "CSI": 0.014688678018978291,
+            "precision": 0.113
+          },
+          "top10": {
+            "preds": 2000,
+            "gt": 6806,
+            "hits": 233,
+            "misses": 6573,
+            "false_alarms": 1767,
+            "POD": 0.03423449897149574,
+            "FAR": 0.8835,
+            "CSI": 0.027178350635716785,
+            "precision": 0.1165
+          },
+          "top20": {
+            "preds": 4000,
+            "gt": 6806,
+            "hits": 488,
+            "misses": 6318,
+            "false_alarms": 3512,
+            "POD": 0.07170143990596532,
+            "FAR": 0.878,
+            "CSI": 0.047295987594495055,
+            "precision": 0.122
+          },
+          "top34": {
+            "preds": 6800,
+            "gt": 6806,
+            "hits": 774,
+            "misses": 6032,
+            "false_alarms": 6026,
+            "POD": 0.11372318542462533,
+            "FAR": 0.8861764705882353,
+            "CSI": 0.06031795511221945,
+            "precision": 0.11382352941176471
+          },
+          "top50": {
+            "preds": 10000,
+            "gt": 6806,
+            "hits": 1059,
+            "misses": 5747,
+            "false_alarms": 8941,
+            "POD": 0.15559800176315017,
+            "FAR": 0.8941,
+            "CSI": 0.0672509049342732,
+            "precision": 0.1059
+          },
+          "top100": {
+            "preds": 20000,
+            "gt": 6806,
+            "hits": 1822,
+            "misses": 4984,
+            "false_alarms": 18178,
+            "POD": 0.2677049662062886,
+            "FAR": 0.9089,
+            "CSI": 0.0729266730707653,
+            "precision": 0.0911
+          },
+          "top150": {
+            "preds": 29999,
+            "gt": 6806,
+            "hits": 2296,
+            "misses": 4510,
+            "false_alarms": 27703,
+            "POD": 0.3373493975903614,
+            "FAR": 0.9234641154705157,
+            "CSI": 0.06653336810687067,
+            "precision": 0.07653588452948432
+          },
+          "top280": {
+            "preds": 50497,
+            "gt": 6806,
+            "hits": 2785,
+            "misses": 4021,
+            "false_alarms": 47712,
+            "POD": 0.40919776667646196,
+            "FAR": 0.9448482088044834,
+            "CSI": 0.05108404563630361,
+            "precision": 0.05515179119551657
+          }
+        },
+        "prob": {
+          "top5": {
+            "preds": 1000,
+            "gt": 6806,
+            "hits": 122,
+            "misses": 6684,
+            "false_alarms": 878,
+            "POD": 0.01792535997649133,
+            "FAR": 0.878,
+            "CSI": 0.015877147319104633,
+            "precision": 0.122
+          },
+          "top10": {
+            "preds": 2000,
+            "gt": 6806,
+            "hits": 219,
+            "misses": 6587,
+            "false_alarms": 1781,
+            "POD": 0.03217749044960329,
+            "FAR": 0.8905,
+            "CSI": 0.025503668335856527,
+            "precision": 0.1095
+          },
+          "top20": {
+            "preds": 4000,
+            "gt": 6806,
+            "hits": 425,
+            "misses": 6381,
+            "false_alarms": 3575,
+            "POD": 0.062444901557449306,
+            "FAR": 0.89375,
+            "CSI": 0.04094017917349003,
+            "precision": 0.10625
+          },
+          "top34": {
+            "preds": 6800,
+            "gt": 6806,
+            "hits": 720,
+            "misses": 6086,
+            "false_alarms": 6080,
+            "POD": 0.1057890096973259,
+            "FAR": 0.8941176470588236,
+            "CSI": 0.05587459258109576,
+            "precision": 0.10588235294117647
+          },
+          "top50": {
+            "preds": 10000,
+            "gt": 6806,
+            "hits": 991,
+            "misses": 5815,
+            "false_alarms": 9009,
+            "POD": 0.14560681751395826,
+            "FAR": 0.9009,
+            "CSI": 0.06266202971862156,
+            "precision": 0.0991
+          },
+          "top100": {
+            "preds": 20000,
+            "gt": 6806,
+            "hits": 1707,
+            "misses": 5099,
+            "false_alarms": 18293,
+            "POD": 0.2508081104907435,
+            "FAR": 0.91465,
+            "CSI": 0.06801067771624368,
+            "precision": 0.08535
+          },
+          "top150": {
+            "preds": 29999,
+            "gt": 6806,
+            "hits": 2200,
+            "misses": 4606,
+            "false_alarms": 27799,
+            "POD": 0.32324419629738466,
+            "FAR": 0.9266642221407381,
+            "CSI": 0.06357462794393874,
+            "precision": 0.07333577785926197
+          },
+          "top280": {
+            "preds": 50497,
+            "gt": 6806,
+            "hits": 2778,
+            "misses": 4028,
+            "false_alarms": 47719,
+            "POD": 0.4081692624155157,
+            "FAR": 0.9449868309008456,
+            "CSI": 0.05094910591471802,
+            "precision": 0.05501316909915441
+          }
+        },
+        "hm_val": {
+          "top5": {
+            "preds": 1000,
+            "gt": 6806,
+            "hits": 67,
+            "misses": 6739,
+            "false_alarms": 933,
+            "POD": 0.009844255069056715,
+            "FAR": 0.933,
+            "CSI": 0.008657449282853082,
+            "precision": 0.067
+          },
+          "top10": {
+            "preds": 2000,
+            "gt": 6806,
+            "hits": 158,
+            "misses": 6648,
+            "false_alarms": 1842,
+            "POD": 0.023214810461357625,
+            "FAR": 0.921,
+            "CSI": 0.018270120259019425,
+            "precision": 0.079
+          },
+          "top20": {
+            "preds": 4000,
+            "gt": 6806,
+            "hits": 382,
+            "misses": 6424,
+            "false_alarms": 3618,
+            "POD": 0.05612694681163679,
+            "FAR": 0.9045,
+            "CSI": 0.03664620107444359,
+            "precision": 0.0955
+          },
+          "top34": {
+            "preds": 6800,
+            "gt": 6806,
+            "hits": 685,
+            "misses": 6121,
+            "false_alarms": 6115,
+            "POD": 0.10064648839259477,
+            "FAR": 0.899264705882353,
+            "CSI": 0.05301447256404303,
+            "precision": 0.10073529411764706
+          },
+          "top50": {
+            "preds": 10000,
+            "gt": 6806,
+            "hits": 977,
+            "misses": 5829,
+            "false_alarms": 9023,
+            "POD": 0.14354980899206582,
+            "FAR": 0.9023,
+            "CSI": 0.061722155537304944,
+            "precision": 0.0977
+          },
+          "top100": {
+            "preds": 20000,
+            "gt": 6806,
+            "hits": 1738,
+            "misses": 5068,
+            "false_alarms": 18262,
+            "POD": 0.25536291507493386,
+            "FAR": 0.9131,
+            "CSI": 0.06933141854156694,
+            "precision": 0.0869
+          },
+          "top150": {
+            "preds": 29999,
+            "gt": 6806,
+            "hits": 2261,
+            "misses": 4545,
+            "false_alarms": 27738,
+            "POD": 0.33220687628563034,
+            "FAR": 0.9246308210273676,
+            "CSI": 0.0654527559055118,
+            "precision": 0.07536917897263243
+          },
+          "top280": {
+            "preds": 50497,
+            "gt": 6806,
+            "hits": 2787,
+            "misses": 4019,
+            "false_alarms": 47710,
+            "POD": 0.4094916250367323,
+            "FAR": 0.9448086024912371,
+            "CSI": 0.05112260620735197,
+            "precision": 0.055191397508762896
+          }
+        },
+        "prob_x_hm_unnormalised": {
+          "top5": {
+            "preds": 1000,
+            "gt": 6806,
+            "hits": 113,
+            "misses": 6693,
+            "false_alarms": 887,
+            "POD": 0.01660299735527476,
+            "FAR": 0.887,
+            "CSI": 0.014688678018978291,
+            "precision": 0.113
+          },
+          "top10": {
+            "preds": 2000,
+            "gt": 6806,
+            "hits": 233,
+            "misses": 6573,
+            "false_alarms": 1767,
+            "POD": 0.03423449897149574,
+            "FAR": 0.8835,
+            "CSI": 0.027178350635716785,
+            "precision": 0.1165
+          },
+          "top20": {
+            "preds": 4000,
+            "gt": 6806,
+            "hits": 488,
+            "misses": 6318,
+            "false_alarms": 3512,
+            "POD": 0.07170143990596532,
+            "FAR": 0.878,
+            "CSI": 0.047295987594495055,
+            "precision": 0.122
+          },
+          "top34": {
+            "preds": 6800,
+            "gt": 6806,
+            "hits": 774,
+            "misses": 6032,
+            "false_alarms": 6026,
+            "POD": 0.11372318542462533,
+            "FAR": 0.8861764705882353,
+            "CSI": 0.06031795511221945,
+            "precision": 0.11382352941176471
+          },
+          "top50": {
+            "preds": 10000,
+            "gt": 6806,
+            "hits": 1059,
+            "misses": 5747,
+            "false_alarms": 8941,
+            "POD": 0.15559800176315017,
+            "FAR": 0.8941,
+            "CSI": 0.0672509049342732,
+            "precision": 0.1059
+          },
+          "top100": {
+            "preds": 20000,
+            "gt": 6806,
+            "hits": 1822,
+            "misses": 4984,
+            "false_alarms": 18178,
+            "POD": 0.2677049662062886,
+            "FAR": 0.9089,
+            "CSI": 0.0729266730707653,
+            "precision": 0.0911
+          },
+          "top150": {
+            "preds": 29999,
+            "gt": 6806,
+            "hits": 2296,
+            "misses": 4510,
+            "false_alarms": 27703,
+            "POD": 0.3373493975903614,
+            "FAR": 0.9234641154705157,
+            "CSI": 0.06653336810687067,
+            "precision": 0.07653588452948432
+          },
+          "top280": {
+            "preds": 50497,
+            "gt": 6806,
+            "hits": 2785,
+            "misses": 4021,
+            "false_alarms": 47712,
+            "POD": 0.40919776667646196,
+            "FAR": 0.9448482088044834,
+            "CSI": 0.05108404563630361,
+            "precision": 0.05515179119551657
+          }
+        }
+      },
+      "topN_oracle_uses_split_gt_NOT_an_operating_point": {
+        "1x_gt_count": {
+          "preds": 6806,
+          "gt": 6806,
+          "hits": 811,
+          "misses": 5995,
+          "false_alarms": 5995,
+          "POD": 0.1191595650896268,
+          "FAR": 0.8808404349103732,
+          "CSI": 0.06335442543551285,
+          "precision": 0.1191595650896268
+        },
+        "2x_gt_count": {
+          "preds": 13612,
+          "gt": 6806,
+          "hits": 1449,
+          "misses": 5357,
+          "false_alarms": 12163,
+          "POD": 0.21290038201586836,
+          "FAR": 0.8935498089920658,
+          "CSI": 0.07638779060572513,
+          "precision": 0.10645019100793418
+        },
+        "3x_gt_count": {
+          "preds": 20367,
+          "gt": 6806,
+          "hits": 1912,
+          "misses": 4894,
+          "false_alarms": 18455,
+          "POD": 0.2809285924184543,
+          "FAR": 0.9061226493838072,
+          "CSI": 0.07568979850362219,
+          "precision": 0.09387735061619286
+        }
+      },
+      "fine_prob_threshold_sweep": {
+        "0.20": {
+          "preds": 55988,
+          "gt": 6806,
+          "hits": 2848,
+          "misses": 3958,
+          "false_alarms": 53140,
+          "POD": 0.41845430502497794,
+          "FAR": 0.949131956847896,
+          "CSI": 0.04750942514930104,
+          "precision": 0.050868043152104025
+        },
+        "0.22": {
+          "preds": 55967,
+          "gt": 6806,
+          "hits": 2848,
+          "misses": 3958,
+          "false_alarms": 53119,
+          "POD": 0.41845430502497794,
+          "FAR": 0.9491128700841568,
+          "CSI": 0.04752607425949103,
+          "precision": 0.050887129915843266
+        },
+        "0.24": {
+          "preds": 55932,
+          "gt": 6806,
+          "hits": 2848,
+          "misses": 3958,
+          "false_alarms": 53084,
+          "POD": 0.41845430502497794,
+          "FAR": 0.9490810269613101,
+          "CSI": 0.04755384872265821,
+          "precision": 0.050918973038689835
+        },
+        "0.26": {
+          "preds": 55877,
+          "gt": 6806,
+          "hits": 2848,
+          "misses": 3958,
+          "false_alarms": 53029,
+          "POD": 0.41845430502497794,
+          "FAR": 0.9490309071711079,
+          "CSI": 0.04759755995654717,
+          "precision": 0.05096909282889203
+        },
+        "0.28": {
+          "preds": 55766,
+          "gt": 6806,
+          "hits": 2847,
+          "misses": 3959,
+          "false_alarms": 52919,
+          "POD": 0.4183073758448428,
+          "FAR": 0.9489473872969193,
+          "CSI": 0.04766848053578903,
+          "precision": 0.05105261270308073
+        },
+        "0.30": {
+          "preds": 55607,
+          "gt": 6806,
+          "hits": 2846,
+          "misses": 3960,
+          "false_alarms": 52761,
+          "POD": 0.4181604466647076,
+          "FAR": 0.948819393241858,
+          "CSI": 0.047778132187284904,
+          "precision": 0.05118060675814196
+        },
+        "0.32": {
+          "preds": 55417,
+          "gt": 6806,
+          "hits": 2844,
+          "misses": 3962,
+          "false_alarms": 52573,
+          "POD": 0.41786658830443724,
+          "FAR": 0.9486800079398019,
+          "CSI": 0.047895720709341685,
+          "precision": 0.05131999206019813
+        },
+        "0.34": {
+          "preds": 55089,
+          "gt": 6806,
+          "hits": 2844,
+          "misses": 3962,
+          "false_alarms": 52245,
+          "POD": 0.41786658830443724,
+          "FAR": 0.9483744486195066,
+          "CSI": 0.048161758479958,
+          "precision": 0.051625551380493385
+        },
+        "0.36": {
+          "preds": 54614,
+          "gt": 6806,
+          "hits": 2840,
+          "misses": 3966,
+          "false_alarms": 51774,
+          "POD": 0.41727887158389654,
+          "FAR": 0.9479986816567181,
+          "CSI": 0.04848071013997952,
+          "precision": 0.05200131834328194
+        },
+        "0.38": {
+          "preds": 53901,
+          "gt": 6806,
+          "hits": 2829,
+          "misses": 3977,
+          "false_alarms": 51072,
+          "POD": 0.41566265060240964,
+          "FAR": 0.9475148884065231,
+          "CSI": 0.04887867583537786,
+          "precision": 0.05248511159347693
+        },
+        "0.40": {
+          "preds": 53018,
+          "gt": 6806,
+          "hits": 2815,
+          "misses": 3991,
+          "false_alarms": 50203,
+          "POD": 0.4136056420805172,
+          "FAR": 0.946904824776491,
+          "CSI": 0.04937816835938185,
+          "precision": 0.053095175223509
+        },
+        "0.42": {
+          "preds": 51971,
+          "gt": 6806,
+          "hits": 2797,
+          "misses": 4009,
+          "false_alarms": 49174,
+          "POD": 0.41096091683808406,
+          "FAR": 0.9461815243116354,
+          "CSI": 0.04996427295462665,
+          "precision": 0.05381847568836466
+        },
+        "0.44": {
+          "preds": 50639,
+          "gt": 6806,
+          "hits": 2772,
+          "misses": 4034,
+          "false_alarms": 47867,
+          "POD": 0.40728768733470466,
+          "FAR": 0.9452595825352001,
+          "CSI": 0.05070144312549156,
+          "precision": 0.05474041746479986
+        },
+        "0.46": {
+          "preds": 49070,
+          "gt": 6806,
+          "hits": 2737,
+          "misses": 4069,
+          "false_alarms": 46333,
+          "POD": 0.4021451660299736,
+          "FAR": 0.9442225392296719,
+          "CSI": 0.05150642654171136,
+          "precision": 0.0557774607703281
+        },
+        "0.48": {
+          "preds": 47380,
+          "gt": 6806,
+          "hits": 2715,
+          "misses": 4091,
+          "false_alarms": 44665,
+          "POD": 0.3989127240669997,
+          "FAR": 0.9426973406500633,
+          "CSI": 0.05274814944337588,
+          "precision": 0.05730265934993668
+        },
+        "0.50": {
+          "preds": 45693,
+          "gt": 6806,
+          "hits": 2688,
+          "misses": 4118,
+          "false_alarms": 43005,
+          "POD": 0.39494563620335,
+          "FAR": 0.9411726084958308,
+          "CSI": 0.05396398385898697,
+          "precision": 0.05882739150416913
+        },
+        "0.52": {
+          "preds": 44005,
+          "gt": 6806,
+          "hits": 2657,
+          "misses": 4149,
+          "false_alarms": 41348,
+          "POD": 0.39039083161915955,
+          "FAR": 0.9396204976707192,
+          "CSI": 0.05517714000913735,
+          "precision": 0.060379502329280764
+        },
+        "0.54": {
+          "preds": 42343,
+          "gt": 6806,
+          "hits": 2616,
+          "misses": 4190,
+          "false_alarms": 39727,
+          "POD": 0.3843667352336174,
+          "FAR": 0.9382188319202702,
+          "CSI": 0.05621816775191799,
+          "precision": 0.061781168079729824
+        },
+        "0.56": {
+          "preds": 40574,
+          "gt": 6806,
+          "hits": 2577,
+          "misses": 4229,
+          "false_alarms": 37997,
+          "POD": 0.3786364972083456,
+          "FAR": 0.9364864198747966,
+          "CSI": 0.05751846974532955,
+          "precision": 0.06351358012520333
+        },
+        "0.58": {
+          "preds": 38883,
+          "gt": 6806,
+          "hits": 2544,
+          "misses": 4262,
+          "false_alarms": 36339,
+          "POD": 0.3737878342638848,
+          "FAR": 0.934572949618085,
+          "CSI": 0.05896395874377101,
+          "precision": 0.06542705038191497
+        },
+        "0.60": {
+          "preds": 37053,
+          "gt": 6806,
+          "hits": 2492,
+          "misses": 4314,
+          "false_alarms": 34561,
+          "POD": 0.3661475168968557,
+          "FAR": 0.9327449869106416,
+          "CSI": 0.060241255106727586,
+          "precision": 0.06725501308935848
+        },
+        "0.62": {
+          "preds": 35177,
+          "gt": 6806,
+          "hits": 2442,
+          "misses": 4364,
+          "false_alarms": 32735,
+          "POD": 0.358801057890097,
+          "FAR": 0.9305796401057509,
+          "CSI": 0.061758680862901795,
+          "precision": 0.06942035989424908
+        },
+        "0.64": {
+          "preds": 33311,
+          "gt": 6806,
+          "hits": 2385,
+          "misses": 4421,
+          "false_alarms": 30926,
+          "POD": 0.350426094622392,
+          "FAR": 0.928402029359671,
+          "CSI": 0.06320894731262588,
+          "precision": 0.07159797064032902
+        },
+        "0.66": {
+          "preds": 31382,
+          "gt": 6806,
+          "hits": 2316,
+          "misses": 4490,
+          "false_alarms": 29066,
+          "POD": 0.34028798119306497,
+          "FAR": 0.9261997323306354,
+          "CSI": 0.0645628902765388,
+          "precision": 0.07380026766936461
+        },
+        "0.68": {
+          "preds": 29403,
+          "gt": 6806,
+          "hits": 2235,
+          "misses": 4571,
+          "false_alarms": 27168,
+          "POD": 0.3283867176021158,
+          "FAR": 0.9239873482297725,
+          "CSI": 0.0657856007535174,
+          "precision": 0.07601265177022752
+        },
+        "0.70": {
+          "preds": 27347,
+          "gt": 6806,
+          "hits": 2139,
+          "misses": 4667,
+          "false_alarms": 25208,
+          "POD": 0.314281516309139,
+          "FAR": 0.9217830109335576,
+          "CSI": 0.06681451864809146,
+          "precision": 0.0782169890664424
+        },
+        "0.72": {
+          "preds": 25206,
+          "gt": 6806,
+          "hits": 2038,
+          "misses": 4768,
+          "false_alarms": 23168,
+          "POD": 0.2994416691154863,
+          "FAR": 0.9191462350234071,
+          "CSI": 0.06799225995863081,
+          "precision": 0.08085376497659287
+        },
+        "0.74": {
+          "preds": 23099,
+          "gt": 6806,
+          "hits": 1919,
+          "misses": 4887,
+          "false_alarms": 21180,
+          "POD": 0.28195709667940055,
+          "FAR": 0.9169228105112776,
+          "CSI": 0.06856999928535697,
+          "precision": 0.08307718948872246
+        },
+        "0.76": {
+          "preds": 20814,
+          "gt": 6806,
+          "hits": 1793,
+          "misses": 5013,
+          "false_alarms": 19021,
+          "POD": 0.2634440199823685,
+          "FAR": 0.9138560584222158,
+          "CSI": 0.06942347156076974,
+          "precision": 0.08614394157778418
+        },
+        "0.78": {
+          "preds": 18370,
+          "gt": 6806,
+          "hits": 1653,
+          "misses": 5153,
+          "false_alarms": 16717,
+          "POD": 0.24287393476344402,
+          "FAR": 0.9100163309744148,
+          "CSI": 0.07027164902435913,
+          "precision": 0.08998366902558519
+        },
+        "0.80": {
+          "preds": 15949,
+          "gt": 6806,
+          "hits": 1499,
+          "misses": 5307,
+          "false_alarms": 14450,
+          "POD": 0.2202468410226271,
+          "FAR": 0.9060129161702928,
+          "CSI": 0.07052126458411742,
+          "precision": 0.09398708382970719
+        },
+        "0.82": {
+          "preds": 13321,
+          "gt": 6806,
+          "hits": 1297,
+          "misses": 5509,
+          "false_alarms": 12024,
+          "POD": 0.1905671466353218,
+          "FAR": 0.9026349373170183,
+          "CSI": 0.06887944768985661,
+          "precision": 0.09736506268298176
+        },
+        "0.84": {
+          "preds": 10784,
+          "gt": 6806,
+          "hits": 1110,
+          "misses": 5696,
+          "false_alarms": 9674,
+          "POD": 0.16309138995004407,
+          "FAR": 0.8970697329376854,
+          "CSI": 0.06735436893203883,
+          "precision": 0.10293026706231453
+        },
+        "0.86": {
+          "preds": 8040,
+          "gt": 6806,
+          "hits": 887,
+          "misses": 5919,
+          "false_alarms": 7153,
+          "POD": 0.1303261827799001,
+          "FAR": 0.8896766169154229,
+          "CSI": 0.06354323375599971,
+          "precision": 0.11032338308457712
+        },
+        "0.88": {
+          "preds": 5521,
+          "gt": 6806,
+          "hits": 631,
+          "misses": 6175,
+          "false_alarms": 4890,
+          "POD": 0.09271231266529532,
+          "FAR": 0.8857091106683572,
+          "CSI": 0.0539500683994528,
+          "precision": 0.11429088933164282
+        },
+        "0.90": {
+          "preds": 3230,
+          "gt": 6806,
+          "hits": 405,
+          "misses": 6401,
+          "false_alarms": 2825,
+          "POD": 0.05950631795474581,
+          "FAR": 0.8746130030959752,
+          "CSI": 0.04205170802616551,
+          "precision": 0.12538699690402477
+        },
+        "0.92": {
+          "preds": 1446,
+          "gt": 6806,
+          "hits": 197,
+          "misses": 6609,
+          "false_alarms": 1249,
+          "POD": 0.028945048486629446,
+          "FAR": 0.863762102351314,
+          "CSI": 0.0244568590937306,
+          "precision": 0.13623789764868602
+        },
+        "0.94": {
+          "preds": 361,
+          "gt": 6806,
+          "hits": 54,
+          "misses": 6752,
+          "false_alarms": 307,
+          "POD": 0.007934175727299441,
+          "FAR": 0.850415512465374,
+          "CSI": 0.007591733445803458,
+          "precision": 0.14958448753462603
+        },
+        "0.96": {
+          "preds": 6,
+          "gt": 6806,
+          "hits": 0,
+          "misses": 6806,
+          "false_alarms": 6,
+          "POD": 0.0,
+          "FAR": 1.0,
+          "CSI": 0.0,
+          "precision": 0.0
+        },
+        "0.98": {
+          "preds": 0,
+          "gt": 6806,
+          "hits": 0,
+          "misses": 6806,
+          "false_alarms": 0,
+          "POD": 0.0,
+          "FAR": 0.0,
+          "CSI": 0.0,
+          "precision": 0.0
+        },
+        "1.00": {
+          "preds": 0,
+          "gt": 6806,
+          "hits": 0,
+          "misses": 6806,
+          "false_alarms": 0,
+          "POD": 0.0,
+          "FAR": 0.0,
+          "CSI": 0.0,
+          "precision": 0.0
+        }
+      },
+      "fine_prob_threshold_best_csi_tau_on_this_split": 0.8,
+      "false_alarm_geometry": {
+        "total_false_alarms": 53140,
+        "nearest_gt_distance_buckets": {
+          "le_30km_lost_bilateral_contest": 240,
+          "30_45km": 2590,
+          "45_60km": 3006,
+          "60_90km": 6609,
+          "90_150km": 11756,
+          "gt_150km": 28939,
+          "no_gt_in_timestamp": 0
+        },
+        "median_nearest_gt_km": 165.59756780922953,
+        "mean_nearest_gt_km": 236.64847399114575
+      },
+      "tp_vs_fa_auc_by_field": {
+        "prob": 0.6845155881961155,
+        "score": 0.7009788610909068,
+        "hm_val": 0.694207237057719,
+        "bt13_local": 0.4072874235377823,
+        "delta_bt13_local": 0.4176707541664376,
+        "b10_b13_local": 0.6056286057234864,
+        "b11_b13_local": 0.5246339797513881
+      },
+      "ap_by_ranking_key": {
+        "score": {
+          "AP": 0.04276440826497521,
+          "TP": 2847,
+          "FP": 53141
+        },
+        "prob": {
+          "AP": 0.040770154110615985,
+          "TP": 2848,
+          "FP": 53140
+        },
+        "hm_val": {
+          "AP": 0.03749162936514182,
+          "TP": 2847,
+          "FP": 53141
+        },
+        "prob_x_hm_unnormalised": {
+          "AP": 0.043347713050740054,
+          "TP": 2847,
+          "FP": 53141
+        },
+        "minus_bt13_local": {
+          "AP": 0.02789139931991823,
+          "TP": 2849,
+          "FP": 53139
+        },
+        "minus_delta_bt13_local": {
+          "AP": 0.028028942804405377,
+          "TP": 2849,
+          "FP": 53139
+        }
+      },
+      "ap_null_shuffled_within_timestamp": {
+        "reps": 20,
+        "mean": 0.02262499907936589,
+        "std": 0.0004620655195274194,
+        "min": 0.021857535409555852,
+        "max": 0.02347912485553127
+      },
+      "ap_reference_eval_operational_tiers": {
+        "AP": 0.04276440826497521,
+        "TP": 2847,
+        "FP": 53141
+      },
+      "ap_implementation_agrees": true,
+      "per_timestamp_heatmap_max": {
+        "recovered_Hmax_median": 0.2531684638037839,
+        "recovered_Hmax_p10": 0.21956118940755798,
+        "recovered_Hmax_p90": 0.3152938735056499,
+        "corr_Hmax_vs_candidate_count": -0.3771318694962952,
+        "corr_Hmax_vs_gt_count": -0.06613667320668927,
+        "Hmax_median_on_zero_gt_ts": null,
+        "Hmax_median_on_positive_gt_ts": 0.2531684638037839
+      },
+      "gate_strength": {
+        "suppressed": 1679,
+        "suppressed_pct_of_raw": 2.911543863908301,
+        "true_objects_lost_to_gate": 20,
+        "field_separation": {
+          "delta_bt13_local": {
+            "TP_median": -18.68499755859375,
+            "FA_median": -15.839996337890625,
+            "TP_p10": -46.92900848388672,
+            "FA_p10": -40.279998779296875
+          },
+          "b10_b13_local": {
+            "TP_median": -5.30999755859375,
+            "FA_median": -7.1399993896484375,
+            "TP_p10": -12.740005493164062,
+            "FA_p10": -21.579986572265625
+          },
+          "bt13_local": {
+            "TP_median": 244.8199920654297,
+            "FA_median": 250.75,
+            "TP_p10": 220.1599884033203,
+            "FA_p10": 223.62998962402344
+          }
+        }
+      },
+      "post_hoc_dedup_radius": {
+        "30km": {
+          "preds": 55988,
+          "gt": 6806,
+          "hits": 2848,
+          "misses": 3958,
+          "false_alarms": 53140,
+          "POD": 0.41845430502497794,
+          "FAR": 0.949131956847896,
+          "CSI": 0.04750942514930104,
+          "precision": 0.050868043152104025
+        },
+        "45km": {
+          "preds": 44871,
+          "gt": 6806,
+          "hits": 2352,
+          "misses": 4454,
+          "false_alarms": 42519,
+          "POD": 0.34557743167793126,
+          "FAR": 0.9475830714715517,
+          "CSI": 0.04768373035985808,
+          "precision": 0.05241692852844822
+        },
+        "60km": {
+          "preds": 35446,
+          "gt": 6806,
+          "hits": 1864,
+          "misses": 4942,
+          "false_alarms": 33582,
+          "POD": 0.2738759917719659,
+          "FAR": 0.9474129662021102,
+          "CSI": 0.04615232247202139,
+          "precision": 0.052587033797889746
+        },
+        "90km": {
+          "preds": 23374,
+          "gt": 6806,
+          "hits": 1218,
+          "misses": 5588,
+          "false_alarms": 22156,
+          "POD": 0.17895974140464296,
+          "FAR": 0.9478908188585607,
+          "CSI": 0.04205510669152683,
+          "precision": 0.052109181141439205
+        }
+      },
+      "calibration_bypass": {
+        "dense_candidate_prob_mean": 0.6749462726974225,
+        "dense_candidate_prob_quantiles": {
+          "5": 0.3966380685567856,
+          "25": 0.5437868684530258,
+          "50": 0.6939188838005066,
+          "75": 0.8147062212228775,
+          "95": 0.9045421987771988
+        },
+        "window_level_n": 61200,
+        "window_level_pos_rate": 0.24313725490196078,
+        "window_p_raw_quantiles": {
+          "5": 0.15473098793567608,
+          "25": 0.28422360681841485,
+          "50": 0.43264608077995587,
+          "75": 0.6554358979509878,
+          "95": 0.8713852507335879
+        },
+        "window_p_cal_quantiles": {
+          "5": 0.032413793103448274,
+          "25": 0.07027818448023426,
+          "50": 0.10891578167448752,
+          "75": 0.44166666666666665,
+          "95": 0.7183098591549296
+        },
+        "frac_windows_p_raw_ge_0.20": 0.8869281045751634,
+        "frac_windows_p_cal_ge_tau_dev": 0.3515359477124183,
+        "dense_prob_mapped_through_window_isotonic_quantiles": {
+          "5": 0.09711286089238845,
+          "25": 0.2631578947368421,
+          "50": 0.5291666666666667,
+          "75": 0.6222910216718264,
+          "95": 0.7183098591549296
+        },
+        "frac_dense_candidates_surviving_calibrated_tau_dev": 0.7487854540258627,
+        "caveat": "Dense prob is the Hann-blended CNN-only sigmoid; the isotonic map was fitted on the CNN+GBDT window blend. Indicative, not an exact recalibration."
+      }
+    }
+  },
+  "matcher_validation": {
+    "timestamps_checked": 8,
+    "identical": 8,
+    "all_agree": true
+  }
+}

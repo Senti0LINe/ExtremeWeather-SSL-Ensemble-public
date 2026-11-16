@@ -1,0 +1,18 @@
+# ExtremeWeather-SSL-Ensemble — core runtime dependencies
+# Verified against the actual imports in ewci/ and tools/ (2026-11-13).
+torch>=2.1.0
+numpy>=1.24.0
+scipy>=1.10.0
+scikit-learn>=1.3.0
+lightgbm>=4.0.0
+joblib>=1.3.0
+pandas>=2.0.0
+matplotlib>=3.7.0
+pillow>=10.0.0
+zarr>=2.16.0
+xarray>=2023.0.0
+netCDF4>=1.6.0
+
+# Optional: ERA5 download tooling (tools/download_era5_min.py)
+#   pip install cdsapi>=0.6.0
+

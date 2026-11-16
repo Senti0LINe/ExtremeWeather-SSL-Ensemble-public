@@ -1,0 +1,111 @@
+# Project ignore rules
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# PyTorch / Deep Learning
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.safetensors
+checkpoints/
+experiments/*/checkpoints/
+experiments/*/logs/
+
+# Data & Large Archives
+*.zarr/
+*.nc
+*.nc4
+*.h5
+*.hdf5
+*.npz
+*.tar.gz
+*.zip
+data/raw/
+data/processed/
+
+# Slurm / Logging
+*.out
+*.err
+logs/
+*.log
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Recycled files
+.recycle/
+
+# Publication tooling — lives only in the local bridge folder. It contains the
+# internal path/account patterns used for scrubbing, so it must never be committed.
+publish/
+
+
+# Generated panels and figures under reports/ are tracked on purpose:
+# they are the project's deliverables. Only intermediate experiment-side
+# renderings and large regenerable binaries stay out (see below).
+
+# large regenerable binaries
+*.pkl
+experiments/**/fine_map_*.png
+experiments/*/probability_map.png
+
+# Large regenerable candidate dumps (kept on disk, rebuilt by dense_inference_v2.py)
+experiments/final/dense_candidates_*.json
+
+# Pre-repair artifact archive (97 MB). Kept on disk for old/new comparison;
+# the pre-repair metric JSONs are also recoverable from git history.
+experiments/archive_v2_original/
+
+# --- Shipped artifacts: trained models and the caches needed to reproduce
+# --- every published number without retraining. Negations must come after
+# --- the *.pt / *.npz / *.pkl rules above.
+!experiments/p1_cnn/best.pt
+!experiments/p1_seed*/best.pt
+!experiments/p2_seed*/best.pt
+!experiments/p1_cnn/probs.npz
+!experiments/p1_seed*_dev_tta.npz
+!experiments/p2_seed*_dev_tta.npz
+!experiments/p2_seed*_bench_tta.npz
+!experiments/final/p1_seed*_test_tta.npz
+!experiments/final/p2_seed*_test_tta.npz
+!experiments/p0_gbdt/features_train.npz
+!experiments/p0_gbdt/features_dev.npz
+!experiments/p0_gbdt/features_val.npz
+!experiments/final/features_test_eval.npz
+!experiments/final/gbdt_cache.pkl
+!experiments/final/dense_sample_test_435.npz
+!experiments/final/cinet_v2_localization_dual_cache.npz
+!experiments/final/cinet_v2_dev_predictions.npz
+!experiments/final/cinet_v2_bench_predictions.npz
+!experiments/final/cinet_v2_test_predictions.npz
+!experiments/final/dense_candidates_dev.json
+!experiments/final/dense_candidates_benchmark.json
+!experiments/final/dense_candidates_test.json
